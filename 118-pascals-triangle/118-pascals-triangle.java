@@ -8,9 +8,8 @@ class Solution {
         while(i<numRows){
             List<Integer> list2=new ArrayList<>();
             list2.add(1);
-            for(int j=1; j<i; j++){
+            for(int j=1; j<i; j++)
                 list2.add(ans.get(i-1).get(j) + ans.get(i-1).get(j-1));
-            }
             list2.add(1);
             ans.add(list2);
             i++;
