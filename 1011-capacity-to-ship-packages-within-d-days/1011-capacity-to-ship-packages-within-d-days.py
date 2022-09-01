@@ -16,11 +16,7 @@ class Solution:
                 day+=1
             return day-1<=days and item==len(wt)
         
-        
-        sm,mx=0,-1
-        for i in wt:
-            mx=max(mx, i)
-            sm+=i
+        sm, mx = sum(wt), max(wt)
         lo,hi,res=mx,sm,sm
         while lo<=hi:
             mid=(lo+hi)//2
