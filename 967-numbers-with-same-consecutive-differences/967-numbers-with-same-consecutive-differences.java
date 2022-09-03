@@ -13,14 +13,9 @@ class Solution {
             list.add(num);
             return;
         }
-        int lastd=num%10;
-        for(int i=0; i<10; i++){
-            if(Math.abs(lastd-i)==k){
-                num = (num*10) + i;
-                dfs(num, n-1);
-                num/=10;
-            }
-        }
+        int l=num%10-k, r=num%10+k;
+        if(l>=0) dfs(num*10+l, n-1);
+        if(r<=9 && l!=r) dfs(num*10+r, n-1);
         return;
     }
     
