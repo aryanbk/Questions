@@ -37,11 +37,11 @@ class Solution:
             return mx
         
         
-        arr=[0]*n
+        histogram = [0]*n
         ans=0
         for i in range(m):
             for j in range(n):
                 ele = int(mat[i][j])
-                arr[j] = 0 if ele==0 else arr[j]+ele
-            ans=max(ans, mah(arr))
+                histogram[j] = 0 if ele==0 else histogram[j]+ele
+            ans=max(ans, mah(histogram))
         return ans
