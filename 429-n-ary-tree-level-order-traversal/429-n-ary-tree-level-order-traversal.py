@@ -10,14 +10,14 @@ class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
         if not root:
             return []
-        q = []
+        q = deque()
         q.append(root)
         ans=[]
         while len(q)>0:
             l=len(q)
             sublist=[]
             for i in range(l):
-                node=q.pop(0)
+                node=q.popleft()
                 sublist.append(node.val)
                 for j in node.children:
                     q.append(j)
