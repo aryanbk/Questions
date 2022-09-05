@@ -2,7 +2,7 @@ class Solution:
     def largestRectangleArea(self, ht: List[int]) -> int:
         l=len(ht)
         def nsl():
-            stk=[]
+            stk=deque()
             res=[-1]*(l)
             for i in range(l):
                 while len(stk)>0 and ht[stk[-1]]>=ht[i]:
@@ -13,7 +13,7 @@ class Solution:
             return res
                 
         def nsr():
-            stk=[]
+            stk=deque()
             res=[l]*(l)
             for i in range(l-1, -1, -1):
                 while len(stk)>0 and ht[stk[-1]]>=ht[i]:
