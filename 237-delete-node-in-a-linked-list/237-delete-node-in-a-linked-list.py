@@ -6,9 +6,9 @@
 
 class Solution:
     def deleteNode(self, node):
-        if not node.next:
-            node=None
-            return
+        # if not node.next:
+        #     node=None
+        #     return
         node.val=node.next.val
         node.next=node.next.next
         return
