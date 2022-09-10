@@ -8,8 +8,25 @@ class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        res=self.inorderTraversal(root.left)
-        res.append(root.val)
-        res.extend(self.inorderTraversal(root.right))
-        return res
+        stk,ans=[],[]
+        while True:
+            if root:
+                stk.append(root)
+                root=root.left
+            else:
+                if len(stk) is 0:
+                    return ans
+                root=stk.pop()
+                ans.append(root.val)
+                root=root.right
         
+        
+        
+# class Solution:
+#     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+#         if not root:
+#             return []
+#         res=self.inorderTraversal(root.left)
+#         res.append(root.val)
+#         res.extend(self.inorderTraversal(root.right))
+#         return res
