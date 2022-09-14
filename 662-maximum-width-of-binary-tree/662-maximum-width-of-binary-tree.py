@@ -8,7 +8,7 @@ class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         q, ans = [[root, 1]], 1
         while len(q)!=0:
-            l, mini, maxi= len(q), q[0][1], -1,
+            l, mini, maxi= len(q), q[0][1], q[0][1],
             for i in range(l):
                 node, num = q.pop(0)
                 maxi = num
