@@ -25,9 +25,9 @@ class Solution:
             l=len(q)
             for _ in range(l):
                 node=q.pop(0)
-                s.add(node)
-                if node.left and node.left not in s: q.append(node.left)
-                if node.right and node.right not in s: q.append(node.right)
-                if node.val in up and up[node.val] not in s: q.append(up[node.val])
+                s.add(node.val)
+                if node.left and node.left.val not in s: q.append(node.left)
+                if node.right and node.right.val not in s: q.append(node.right)
+                if node.val in up and up[node.val].val not in s: q.append(up[node.val])
             ans+=1
         return ans-1
