@@ -10,5 +10,6 @@ class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
         if not root: return 0
         l, r = self.dfs(root.left), self.dfs(root.right)
-        return 1+self.countNodes(root.right) + ((1<<l)-1 if l==r else self.countNodes(root.left))
+        if l==r: return 1 + (1<<l) -1 + self.countNodes(root.right)
+        else: return 1 + (1<<r) -1 + self.countNodes(root.left)
         
