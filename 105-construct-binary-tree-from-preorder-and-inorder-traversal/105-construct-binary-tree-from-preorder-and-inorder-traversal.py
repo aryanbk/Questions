@@ -16,6 +16,5 @@ class Solution:
             return node
         
         mp, l = {}, len(ino)
-        for i in range(l):
-            mp[ino[i]]=i
+        for i in range(l): mp[ino[i]]=i
         return build(0, l-1, 0, l-1)
