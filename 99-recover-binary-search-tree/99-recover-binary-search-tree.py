@@ -20,14 +20,15 @@ class Solution:
             prev=root
             inord(root.right)
         
-        def swap(r1, r2):
-            temp=r1.val
-            r1.val=r2.val
-            r2.val=temp
-        
         one, two, three, prev = None, None, None, None
         inord(root)
-        if three: swap(one, three)
-        else: swap(one, two)
+        if three:
+            temp=one.val
+            one.val=three.val
+            three.val=temp
+        else:
+            temp=one.val
+            one.val=two.val
+            two.val=temp
             
         
