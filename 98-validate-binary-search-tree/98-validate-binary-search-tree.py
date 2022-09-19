@@ -6,8 +6,13 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode], mini=-1*(1<<32), maxi=1<<32) -> bool:
-        if not root: return True
-        if root.val<=mini: return False
-        if root.val>=maxi: return False
-        return self.isValidBST(root.left, mini, root.val) and self.isValidBST(root.right, root.val, maxi)
-    
+        return True if not root else root.val>mini and root.val<maxi and self.isValidBST(root.left, mini, root.val) and self.isValidBST(root.right, root.val, maxi)
+
+
+# Clean Code
+# class Solution:
+#     def isValidBST(self, root: Optional[TreeNode], mini=-1*(1<<32), maxi=1<<32) -> bool:
+#         if not root: return True
+#         if root.val<=mini: return False
+#         if root.val>=maxi: return False
+#         return self.isValidBST(root.left, mini, root.val) and self.isValidBST(root.right, root.val, maxi)
