@@ -4,23 +4,38 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        stk, ans = [], []
+        stk=[]
         while True:
             if root:
                 stk.append(root)
                 root=root.left
             else:
                 root=stk.pop()
-                ans.append(root.val)
-                if len(ans)==k: return ans[-1]
+                k-=1
+                if k==0: return root.val
                 root=root.right
-            
 
+    
+    
+# Inorder
+# class Solution:
+#     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+#         stk, ans = [], []
+#         while True:
+#             if root:
+#                 stk.append(root)
+#                 root=root.left
+#             else:
+#                 if not stk: break
+#                 root=stk.pop()
+#                 ans.append(root.val)
+#                 if len(ans)==k: return ans[-1]
+#                 root=root.right
 
-
-
+# Recursive
 # class Solution:
 #     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
 #         def dfs(root):
