@@ -6,13 +6,13 @@
 #         self.right = right
 class Solution:
     def bstFromPreorder(self, pre: List[int]) -> Optional[TreeNode]:
-        def build(ub):
+        def build(upperBound):
             nonlocal ptr
-            if ptr>=len(pre) or pre[ptr]>ub: return
+            if ptr>=len(pre) or pre[ptr]>upperBound: return
             node=TreeNode(pre[ptr])
             ptr+=1
             node.left=build(node.val)
-            node.right=build(ub)
+            node.right=build(upperBound)
             return node
         ptr=0
         return build(1001)
