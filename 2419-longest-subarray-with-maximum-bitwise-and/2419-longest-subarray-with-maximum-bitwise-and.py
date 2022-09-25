@@ -2,11 +2,13 @@ class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
         mx, ans, i = max(nums), 1, 0
         while i<len(nums):
-            j=i+1
             if nums[i]==mx:
+                j=i+1
                 while j<len(nums) and mx==nums[j]: j+=1
                 ans=max(ans, j-i)
-            i=j
+                i=j
+            else:
+                i+=1
         return ans
 
 
