@@ -12,13 +12,13 @@ class Solution:
                     elif sm<0: lo+=1
                     else:
                         ans.append([nums[i], nums[j], nums[lo], nums[hi]])
-                        p=lo
-                        while lo<l and nums[lo]==nums[p]: lo+=1
-                        p=hi
-                        while hi>j and nums[hi]==nums[p]: hi-=1
-                p=j
-                while j<l and nums[p]==nums[j]: j+=1
-            p=i
-            while i<l and nums[p]==nums[i]: i+=1
+                        p=nums[lo]
+                        while lo<l and nums[lo]==p: lo+=1
+                        p=nums[hi]
+                        while hi>j and nums[hi]==p: hi-=1
+                p=nums[j]
+                while j<l and p==nums[j]: j+=1
+            p=nums[i]
+            while i<l and nums[i]==p: i+=1
             
         return ans
