@@ -15,12 +15,10 @@ class Solution:
             if s[j] in f: f[s[j]]+=1
             else: f[s[j]]=1
             
-            if valid():
+            while valid() and i<=j:
                 if len(ans)>j-i+1: ans=s[i:j+1]
-                while valid() and i<=j:
-                    if len(ans)>j-i+1: ans=s[i:j+1]
-                    f[s[i]]-=1
-                    i+=1
+                f[s[i]]-=1
+                i+=1
             j+=1
         
         return ans if ans!=s+"0" else ""
