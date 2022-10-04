@@ -2,7 +2,7 @@ class Solution:
     def minWindow(self, s: str, t: str) -> str:
         fq=Counter(t)
         l=0
-        ans = [0, len(s)+1]
+        anslo, anshi = 0, len(s)+1
         
         def valid():
             for i in fq.values():
@@ -14,12 +14,13 @@ class Solution:
             fq[s[r]] = fq.get(s[r], 0) -1
             
             while valid():
-                if ans[1]-ans[0] > r-l+1:
-                    ans=[l, r+1]
+                if anshi-anslo > r-l+1:
+                    anslo=l
+                    anshi=r+1
                 fq[s[l]]+=1
                 l+=1
         
-        return "" if (ans[0]==0 and ans[1]==len(s)+1) else s[ans[0]: ans[1]]
+        return "" if (anslo==0 and anshi==len(s)+1) else s[anslo: anshi]
         
 
 
