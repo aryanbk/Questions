@@ -1,13 +1,9 @@
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
-        """
-        Do not return anything, modify board in-place instead.
-        """
-        
         def safe(i, j, n):
-            rf, cf = i//3, j//3
+            rf, cf = (i//3)*3, (j//3)*3
             for a in range(9):
-                if board[a][j]==n or board[i][a]==n or board[rf*3+a//3][cf*3+a%3]==n:
+                if board[a][j]==n or board[i][a]==n or board[rf + a//3][cf + a%3]==n:
                     return False
             return True
         
