@@ -5,8 +5,6 @@ class Solution:
             if o==c==0 and not stk:
                 ans.append(strg[:])
                 return
-            if c==o==0 and stk:
-                return
             
             if o:
                 strg+="("
