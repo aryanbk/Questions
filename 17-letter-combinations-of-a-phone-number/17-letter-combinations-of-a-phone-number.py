@@ -1,7 +1,5 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        ref=["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" ]
-        
         def bk(ptr, sub):
             if ptr>=len(digits):
                 if sub:
@@ -13,6 +11,7 @@ class Solution:
                 bk(ptr+1, sub)
                 sub=sub[:-1]
         
+        ref=["abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" ]
         ans=[]
         bk(0, "")
         return ans
