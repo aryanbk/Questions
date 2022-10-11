@@ -4,17 +4,16 @@ class Solution:
         def valid(i, j):
             return not (i<0 or j<0 or i>=m or j>=n or grid[i][j]!=1)
         
-        q=[]
-        fresh, m , n = 0, len(grid), len(grid[0])
+        fresh, m , n , q= 0, len(grid), len(grid[0]), deque()
         for i in range(m):
             for j in range(n):
                 if grid[i][j]==2:
                     q.append([i, j, 0])
-                if grid[i][j]==1:
+                elif grid[i][j]==1:
                     fresh+=1
         time=0
         while q and fresh:
-            i, j, t = q.pop(0)
+            i, j, t = q.popleft()
             if grid[i][j]==1:
                 fresh-=1
             grid[i][j]=3
