@@ -9,12 +9,8 @@ class Solution:
                 res = res and dfs(i, not stamp)
             return res
         
-        n=len(graph)
-        mp=[None]*n
-        ans=True
-        for i in range(n):
-            if mp[i]==None:
-                ans = ans and dfs(i, True)
-                if not ans:
-                    return ans
-        return ans
+        mp=[None]*len(graph)
+        for i in range(len(mp)):
+            if mp[i]==None and dfs(i, True)==False:
+                return False
+        return True
