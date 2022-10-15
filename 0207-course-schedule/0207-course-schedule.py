@@ -6,27 +6,22 @@ class Solution:
                 adj[i[0]].append(i[1])
             else:
                 adj[i[0]]=[i[1]]
-        # print(adj)
         
-        vis1=[0]*numCourses
-        vis2=[0]*numCourses
-        
+        vis1, vis2 = [False]*numCourses, [False]*numCourses
         
         def dfs(i):
-            if vis1[i]!=0 and vis2[i]==0:
-                return True
-            if vis2[i]!=0:
+            if vis2[i]==True:
                 return False
+            if vis1[i]==True:
+                return True
 
-            
-            
-            vis1[i]+=1
-            vis2[i]+=1
+            vis1[i]=True
+            vis2[i]=True
             ans=True
             if adj[i]:
                 for pre in adj[i]:
                     ans = ans and dfs(pre)
-            vis2[i]-=1
+            vis2[i]=False
             return ans
         
         
@@ -35,12 +30,6 @@ class Solution:
             if not dfs(i):
                 return False
         return True
-        #     if vis1[i]!=0:
-        #         con
-        #     if adj[i]==None:
-        #         vis1[i]+=1
-        #         # vis2[i]+=1
-        #         continue
         
         
             
