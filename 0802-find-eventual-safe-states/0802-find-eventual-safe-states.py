@@ -9,8 +9,10 @@ class Solution:
             if safe[idx]!=None:
                 return safe[idx]
             if vis2[idx]:
+                safe[idx]=False
                 return False
             if vis1[idx]:
+                safe[idx]=True
                 return True
             
             vis1[idx]=True
