@@ -9,7 +9,7 @@ class Solution:
                 adj[i[0]]=[i[1]]
         
         vis1, vis2 = [False]*numCourses, [False]*numCourses
-        flow = []
+        flow = [] #Topological sorting
         
         def dfs(i):
             if vis2[i]==True:
@@ -19,16 +19,15 @@ class Solution:
             
             vis1[i]=True
             vis2[i]=True
-            ans=True
             if adj[i]:
                 for pre in adj[i]:
-                    ans = ans and dfs(pre)
+                    if not dfs(pre):
+                        return False
             vis2[i]=False
             flow.append(i)
-            return ans
+            return True
 
         for i in range(numCourses):
             if not dfs(i):
                 return []
-        # flow = flow[::-1]
         return flow
