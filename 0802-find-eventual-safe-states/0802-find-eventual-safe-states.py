@@ -4,25 +4,21 @@ class Solution:
         vis1 = vis2 = [False]*n
         safe = [None]*n
         
-        
         def isSafe(idx):
             if safe[idx]!=None:
                 return safe[idx]
-            if vis2[idx]:
-                safe[idx]=False
-                return False
-            if vis1[idx]:
-                safe[idx]=True
-                return True
             
             vis1[idx]=True
             vis2[idx]=True
-            res=True
             for node in graph[idx]:
-                res = res and isSafe(node)
+                if vis2[node]:
+                    return False
+                if not vis1[node]:
+                    if not isSafe(node):
+                        return False
             
             vis2[idx]=False
-            safe[idx]=res
+            safe[idx]=True
             return safe[idx]
         
         ans=[]
