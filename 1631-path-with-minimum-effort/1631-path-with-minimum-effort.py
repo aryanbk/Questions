@@ -2,7 +2,7 @@ class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
         m, n = len(heights), len(heights[0])
         minhp, effort = [(0, 0, 0)], [[math.inf]*n for _ in range(m)]
-        dirct = [[1,0], [0,1], [-1,0], [0,-1]]
+        dirct = [(1,0), (0,1), (-1,0), (0,-1)]
         
         while minhp:
             eff, i, j = heappop(minhp)
