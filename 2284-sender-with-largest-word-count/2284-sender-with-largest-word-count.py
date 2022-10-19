@@ -5,11 +5,9 @@ class Solution:
         ans=chr(ord('A')-1)
         
         for m in range(len(messages)):
-            c[senders[m]] += len(messages[m].split())
-            if c[senders[m]] > maxi:
+            c[senders[m]] += messages[m].count(' ') + 1
+            if c[senders[m]] > maxi or (c[senders[m]] == maxi and senders[m]>ans):
                 maxi = c[senders[m]]
                 ans =  senders[m]
-            elif c[senders[m]] == maxi:
-                ans =  max(ans, senders[m])
         
         return ans
