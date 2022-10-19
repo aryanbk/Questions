@@ -3,15 +3,15 @@ class Solution:
         adj = collections.defaultdict(list)
         for u,v,c in flights:
             adj[u].append((v, c))
-        
-        vis, q = [float('inf')]*n, [(0, 0, src)]
+        vis, q = [float('inf')]*n, deque([(0, 0, src)])
         
         while q:
-            k0, curr, node = q.pop(0)
+            k0, curr, node = q.popleft()
             if node==dst:
                 vis[dst] = min(vis[dst], curr)
                 continue
             if k0>k or vis[node]<curr:
+                #cause all the cost less than curr has smaller k value also so that's better than this curr
                 continue
             vis[node]=min(vis[node], curr)
             for v, c in adj[node]:
