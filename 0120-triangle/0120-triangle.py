@@ -1,8 +1,6 @@
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         def findmin(i, j):
-            if j > i:
-                return 10**10
             if i == len(triangle)-1:
                 return triangle[i][j]
             if memo[i][j]==-1:
@@ -11,3 +9,4 @@ class Solution:
         
         memo = [[-1 for j in range(i+1)] for i in range(len(triangle))]
         return findmin(0, 0)
+        
