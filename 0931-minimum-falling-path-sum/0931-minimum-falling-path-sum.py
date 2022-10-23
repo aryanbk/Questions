@@ -1,19 +1,39 @@
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
         l=len(matrix)
-        dp = [[0]*l for _ in range(l)]
+        prev = [matrix[-1][i] for i in range(l)]
         
         for row in range(l-1, -1, -1):
+            curr = [0]*l
             for col in range(l):
                 if row<l-1:
-                    dp[row][col] = dp[row+1][col]
+                    curr[col] = prev[col]
                     if col>0:
-                        dp[row][col] = min(dp[row][col], dp[row+1][col-1])
+                        curr[col] = min(curr[col], prev[col-1])
                     if col<l-1:
-                        dp[row][col] = min(dp[row][col], dp[row+1][col+1])
-                dp[row][col] += matrix[row][col]
+                        curr[col] = min(curr[col], prev[col+1])
+                curr[col] += matrix[row][col]
+            prev = curr
+        return min(prev)
+
+
+
+# class Solution:
+#     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+#         l=len(matrix)
+#         dp = [[0]*l for _ in range(l)]
         
-        return min(dp[0])
+#         for row in range(l-1, -1, -1):
+#             for col in range(l):
+#                 if row<l-1:
+#                     dp[row][col] = dp[row+1][col]
+#                     if col>0:
+#                         dp[row][col] = min(dp[row][col], dp[row+1][col-1])
+#                     if col<l-1:
+#                         dp[row][col] = min(dp[row][col], dp[row+1][col+1])
+#                 dp[row][col] += matrix[row][col]
+        
+#         return min(dp[0])
         
         
 
