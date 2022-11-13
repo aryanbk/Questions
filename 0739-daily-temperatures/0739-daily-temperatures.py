@@ -7,7 +7,8 @@ class Solution:
         while i>=0:
             while stk and stk[-1][0] <= temp[i]:
                 stk.pop()
-            ans[i] = stk[-1][1]-i if stk else 0
+            if stk:
+                ans[i] = stk[-1][1]-i
             stk.append((temp[i], i))
             i-=1
         
