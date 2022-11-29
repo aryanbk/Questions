@@ -5,7 +5,6 @@ class Solution {
         return target%2==0 ? subsetsum(nums, target/2) : false;
     }
     boolean subsetsum(int[] nums, int trgt){
-        System.out.println(trgt);
         int lngt = nums.length;
         boolean dp[][] = new boolean[lngt+1][trgt+1];
         for(int l=0; l<=lngt; ++l){
