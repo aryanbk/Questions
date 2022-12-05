@@ -6,7 +6,6 @@ class Solution:
             suff[i] = suff[i+1]*nums[i+1]
         curr = 1
         for i in range(n):
-            temp = nums[i]
-            nums[i] = curr*suff[i]
-            curr*=temp
-        return nums
+            suff[i] *= curr
+            curr*=nums[i]
+        return suff
