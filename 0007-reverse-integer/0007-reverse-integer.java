@@ -5,6 +5,9 @@ class Solution {
             ans = (ans*10) + (x%10);
             x/=10;
         }
-        return (ans<=Integer.MAX_VALUE && ans>=Integer.MIN_VALUE) ? (int)ans : 0;
+        int res = (int)ans;
+        return res==ans ? res : 0;
+        // return (ans<=Integer.MAX_VALUE && ans>=Integer.MIN_VALUE) ? (int)ans : 0;
+        
     }
 }
