@@ -1,8 +1,7 @@
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
         n=len(gas)
-        gas = [gas[i]-cost[i] for i in range(n)] #net-gas
-        if sum(gas)<0:
+        if sum(gas)-sum(cost)<0:
             return -1
         i=0
         tank=0
@@ -13,7 +12,7 @@ class Solution:
             if tank<0:
                 tank=0
                 start=i
-            tank+=gas[i%n]
+            tank+=gas[i%n]-cost[i%n]
             i+=1
             
             
