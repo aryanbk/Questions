@@ -4,7 +4,7 @@ class Solution {
         for(int i=0; i<pts.length; ++i){
             HashMap<Double, Integer> map = new HashMap<>();
             for(int j=i+1; j<pts.length; ++j){
-                Double slope = Double.NaN;
+                Double slope = -0.0;
                 if(pts[j][0] != pts[i][0]){
                     double up = (pts[j][1]-pts[i][1]);
                     double down = (pts[j][0]-pts[i][0]);
