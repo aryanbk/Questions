@@ -3,9 +3,7 @@ class Solution:
         def bk(ptr, last, sub):
             if ptr>len(nums)-1:
                 if len(sub)>1:
-                    sub2=tuple(sub)
-                    if sub2 not in ans:
-                        ans.add(sub2)
+                    ans.add(tuple(sub))
                 return
             if last<=nums[ptr]:
                 sub.append(nums[ptr])
