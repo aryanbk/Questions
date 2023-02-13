@@ -8,7 +8,6 @@ class Trie{
 
 class Solution {
     Trie head = new Trie();
-    // List<String> ans = new ArrayList<>();
     HashSet<String> ans = new HashSet<>();
     int m , n;
     int[] dirx = new int[]{1, 0, -1, 0};
@@ -31,32 +30,18 @@ class Solution {
                 dfs(i, j, board, head);
             }
         }
-        // List<String> ans = new ArrayList<>();
-        // for
-        // return res;
         return new ArrayList<>(ans);
     }
     private void dfs(int row, int col, char[][] board, Trie curr){
-        if(curr.end!=null)
-            ans.add(curr.end);
-        if(row<0 || row>=m || col<0 || col>=n || board[row][col]=='#' || curr.child[board[row][col]-97]==null)
-            return;
+        if(curr.end!=null) ans.add(curr.end);
+        if(row<0 || row>=m || col<0 || col>=n || board[row][col]=='#' || curr.child[board[row][col]-97]==null) return;
+        
         char temp = board[row][col];
         board[row][col] = '#';
         
-        for(int i=0; i<4; ++i){
-            int rowi=row+dirx[i], coli=col+diry[i];
-            dfs(rowi, coli, board, curr.child[temp-97]);
-        }
-//         {
-//             if(curr.end!=null)
-//                 ans.add(curr.end);
-//             int rowi=row+dirx[i], coli=col+diry[i];
-//             if(!(rowi<0 || rowi>=m || coli<0 || coli>=n || board[rowi][coli]=='#' || curr.child[temp-97]==null)){
-                
-//             }
-//         }
-        
+        for(int i=0; i<4; ++i)
+            dfs(row+dirx[i], col+diry[i], board, curr.child[temp-97]);
+
         board[row][col] = temp;
     }
 }
