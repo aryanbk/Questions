@@ -5,7 +5,7 @@ class Solution {
         
         for(int ptr=0; ptr<tasks.length; ++ptr){
             if(map.containsKey(tasks[ptr]) && map.get(tasks[ptr])>time){
-                time = (long)map.get(tasks[ptr]);
+                time = map.get(tasks[ptr]);
                 ptr--;
             }
             else{
