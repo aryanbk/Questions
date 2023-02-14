@@ -1,5 +1,6 @@
 class Solution {
     public int leastInterval(char[] tasks, int n) {
+        
         HashMap<Character, Integer> map = new HashMap<>();
         PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> Integer.compare(y, x));
         
@@ -19,7 +20,7 @@ class Solution {
             }
             
             while(!stk.isEmpty()) pq.offer(stk.pop());
-            time+=n+1;
+            time += n+1;
         }
         return time;
     }
