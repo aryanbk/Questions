@@ -2,7 +2,7 @@ class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         n = len(edges)
         par = [i for i in range(n+1)]
-        ans = []
+        
         def find(i):
             while par[i]!=i:
                 i=par[i]
@@ -14,7 +14,6 @@ class Solution:
                 par[find_b] = par[find_a]
             else:
                 return [a,b]
-        
-        return [0, 0]
-                
+            
+        return [-1, -1]
                 
