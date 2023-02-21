@@ -12,7 +12,7 @@ class Solution:
             return memo[i]
         memo = {len(s):1}
         dfs(0)
-        return memo[0] if 0 in memo else 0
+        return memo.get(0, 0)
 
 
 # class Solution:
