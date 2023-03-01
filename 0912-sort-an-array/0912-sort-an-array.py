@@ -5,28 +5,21 @@ class Solution:
             n, m = len(a), len(b)
             ans = []
             
-            i = j = k = 0
+            i = j = 0
             
             while i<n and j<m:
                 if a[i]<=b[j]:
-                    # ans[k] = a[i]
                     ans.append(a[i])
                     i+=1
                 else:
-                    # ans[k] = b[j]
                     ans.append(b[j])
                     j+=1
-                k+=1
             while i<n:
-                # ans[k] = a[i]
                 ans.append(a[i])
                 i+=1
-                k+=1
             while j<m:
-                # ans[k] = b[j]
                 ans.append(b[j])
                 j+=1
-                k+=1
             return ans
         
         def divide(l):
