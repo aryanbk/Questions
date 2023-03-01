@@ -1,10 +1,7 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         heapify(nums)
-        ans = [0]*len(nums)
-        for i in range(len(nums)):
-            ans[i] = heappop(nums)
-        return ans
+        return [heappop(nums) for i in range(len(nums))]
 
 
 # class Solution:
