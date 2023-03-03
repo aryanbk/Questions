@@ -1,9 +1,7 @@
 class Solution {
     public int strStr(String hay, String needle) {
-        for(int i=0; i<hay.length(); ++i){
-            int j=0;
-            for(int k=i; j<needle.length() && k<hay.length() && hay.charAt(k)==needle.charAt(j); k++, j++);
-            if(j==needle.length()) return i;
+        for(int i=0; i<=hay.length()-needle.length(); ++i){
+            if(hay.substring(i, i+needle.length()).equals(needle)) return i;
         }
         return -1;
     }
