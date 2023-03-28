@@ -12,18 +12,3 @@ class Solution:
         for i in days: year[i]=True
         dp = [-1]*366
         return recur(365)
-        
-
-
-# class Solution:
-#     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
-        
-#         def recur(d):
-#             while d>0 and year[d]==False: d-=1
-#             if d<=0: return 0
-#             return min(costs[0]+recur(d-1), costs[1]+recur(d-7), costs[2]+recur(d-30))
-        
-#         year = [False]*366
-#         for i in days: year[i]=True
-#         return recur(365)
-        
