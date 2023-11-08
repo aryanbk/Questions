@@ -11,7 +11,7 @@ class Solution {
             adj[t[0]].add(new int[]{t[1], t[2]});
         
         // minTime will store minTime to reach a node
-        // it'll also work as 
+        // it'll also work as visited array
         int[] minTime = new int[n+1];
         Arrays.fill(minTime, Integer.MAX_VALUE);
         
