@@ -1,7 +1,7 @@
 class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
         
-        def make(node):
+        def bfs(node):
             ans = []
             q=[(node, None)]
             
@@ -17,15 +17,11 @@ class Solution:
                 
         
         adj = defaultdict(list)
-        in_deg = defaultdict(int)
         
         for a,b in adjacentPairs:
-            in_deg[a]+=1
-            in_deg[b]+=1
-            
             adj[a].append(b)
             adj[b].append(a)
         
-        for k,v in in_deg.items():
-            if v==1:
-                return make(k)
+        for k,v in adj.items():
+            if len(v)==1:
+                return bfs(k)
