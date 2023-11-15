@@ -1,12 +1,24 @@
 class Solution {
     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
         Arrays.sort(arr);
-        arr[0] = 1;
-        for(int i=1; i<arr.length; ++i)
-            arr[i] = arr[i] == arr[i-1] ? arr[i] : arr[i-1] + 1;
-        return arr[arr.length-1];
+        int ans = 0;
+        for(int a: arr)
+            ans = Math.min(ans + 1, a);
+        return ans;
     }
 }
+
+
+
+// class Solution {
+//     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
+//         Arrays.sort(arr);
+//         arr[0] = 1;
+//         for(int i=1; i<arr.length; ++i)
+//             arr[i] = arr[i] == arr[i-1] ? arr[i] : arr[i-1] + 1;
+//         return arr[arr.length-1];
+//     }
+// }
 
 
 // class Solution {
