@@ -1,5 +1,3 @@
-from typing import List
-
 class Solution:
     def leftmostBuildingQueries(self, heights: List[int], q: List[List[int]]) -> List[int]:
         stack = []
