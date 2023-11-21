@@ -7,7 +7,7 @@ class Solution {
         }
         for(String s: equations){
             if(s.charAt(1) == '!')
-                if(djs.isSame(s.charAt(0)-'a', s.charAt(3)-'a'))
+                if(djs.find(s.charAt(0)-'a') == djs.find(s.charAt(3)-'a'))
                     return false;
         }
         return true;
@@ -34,10 +34,6 @@ class DJS {
             x = parent[x];
         parent[i] = x;
         return parent[x];
-    }
-    
-    public boolean isSame(int x, int y){
-        return find(x) == find(y);
     }
 
     // Merge two sets by rank (Union by Rank)
