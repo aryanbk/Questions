@@ -1,32 +1,27 @@
-class Solution:
-    def minimumCoins(self, prices: List[int]) -> int:
-        @cache
-        def find(i, last):
-            if i == len(prices):
-                return 0
-            
-            ans = math.inf
-            if i <= last:
-                ans = min(ans, find(i + 1, last))
-                
-            return min(prices[i] + find(i + 1, i + i + 1), ans)
+class Solution {
+    int n;
+    int[][] dp;
+    public int minimumCoins(int[] prices) {
+        n = prices.length;
+        dp = new int[n][n];
+        for(var row : dp) Arrays.fill(row, -1); //fill
         
-        return find(0, -1)
-
-
-# class Solution:
-#     def minimumCoins(self, prices: List[int]) -> int:
-#         def find(i, last):
-#             if i==len(prices):
-#                 return 0
-#             if  (i, last) in memo:
-#                 return memo[(i, last)]
-#             ans = math.inf
-#             if i<=last:
-#                 ans = min(ans, find(i+1, last))
-                
-#             memo[(i, last)] = min(prices[i]+find(i+1, i+i+1), ans)
-#             return memo[(i, last)]
+        return find(0, 0, prices);
+    }
+    
+    private int find(int i, int freeTill, int[] prices){
+        if(i>=n) return 0;
         
-#         memo={}
-#         return find(0, -1)
+        if(dp[i][freeTill] != -1) return dp[i][freeTill];
+        
+        int ans = Integer.MAX_VALUE;
+        
+        if(i<=freeTill && i != 0) // eliminate first case
+            ans = Math.min(ans, find(i+1, freeTill, prices)); //buy in free
+        
+        int paid = find(i+1, Math.min(n-1, i+i+1), prices); //paid for i
+        dp[i][freeTill] = Math.min(ans, prices[i] + paid);
+        
+        return dp[i][freeTill];
+    }
+}
