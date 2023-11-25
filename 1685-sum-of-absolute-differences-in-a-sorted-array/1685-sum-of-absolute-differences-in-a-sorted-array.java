@@ -17,3 +17,8 @@ class Solution {
         return ans;
     }
 }
+
+// time O(n)
+// space O(n)
+// space O(1) possible if I use nums as ans
+// add curr += nums[i] before assigning nums[i] as ans[i]
