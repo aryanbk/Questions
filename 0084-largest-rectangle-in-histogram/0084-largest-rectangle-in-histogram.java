@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int largestRectangleArea(int[] hts) {
         int ans = 0;
