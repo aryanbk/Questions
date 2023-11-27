@@ -1,35 +1,84 @@
+// space optimized
+// TC O(n*4*3)
+// SC O(4*3)
+
 class Solution {
     public int knightDialer(int n) {
-        int[][][] dp = new int[4][3][n+1];
         int MOD = 1_000_000_007;
+        int ans = 0;
+        int[][] dp = new int[4][3];
         int[][] dir = {{-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}};
         
-        for(int nn=1; nn<n+1; ++nn){
-            for(int i=0; i<4; ++i){
-                for(int j=0; j<3; ++j){
-                    if(i == 3 && (j == 0 || j == 2)) continue;
-                    if(nn==1){
-                        dp[i][j][nn] = 1;
+        for (int nn = 1; nn <= n; ++nn) {
+            int[][] temp = new int[4][3];
+            ans = 0;
+
+            for (int i = 0; i < 4; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    if (i == 3 && (j == 0 || j == 2)) {
                         continue;
                     }
-                    for(var d: dir){
-                        int x = i+d[0];
-                        int y = j+d[1];
-                        if(x>=0 && x<4 && y>=0 && y<3)
-                            dp[i][j][nn] = (dp[i][j][nn] + dp[x][y][nn-1])%MOD;
+
+                    if (nn == 1) {
+                        temp[i][j] = 1;
+                    } else {
+                        for (int[] d : dir) {
+                            int x = i + d[0];
+                            int y = j + d[1];
+                            if (x >= 0 && x < 4 && y >= 0 && y < 3) {
+                                temp[i][j] = (temp[i][j] + dp[x][y]) % MOD;
+                            }
+                        }
                     }
+                    ans = (ans + temp[i][j]) % MOD;
                 }
             }
+            dp = temp;
         }
-        int ans = 0;
-        for(int i=0; i<4; ++i){
-            for(int j=0; j<3; ++j)
-                ans =  (ans + dp[i][j][n])%MOD;
-        }
+
+
         return ans;
     }
 }
 
+
+// dp - table
+//
+// class Solution {
+//     public int knightDialer(int n) {
+//         int[][][] dp = new int[4][3][n+1];
+//         int MOD = 1_000_000_007;
+//         int[][] dir = {{-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}};
+        
+//         for(int nn=1; nn<n+1; ++nn){
+//             for(int i=0; i<4; ++i){
+//                 for(int j=0; j<3; ++j){
+//                     if(i == 3 && (j == 0 || j == 2)) continue;
+//                     if(nn==1){
+//                         dp[i][j][nn] = 1;
+//                         continue;
+//                     }
+//                     for(var d: dir){
+//                         int x = i+d[0];
+//                         int y = j+d[1];
+//                         if(x>=0 && x<4 && y>=0 && y<3)
+//                             dp[i][j][nn] = (dp[i][j][nn] + dp[x][y][nn-1])%MOD;
+//                     }
+//                 }
+//             }
+//         }
+//         int ans = 0;
+//         for(int i=0; i<4; ++i){
+//             for(int j=0; j<3; ++j)
+//                 ans =  (ans + dp[i][j][n])%MOD;
+//         }
+//         return ans;
+//     }
+// }
+
+
+// memo
+//
 // class Solution {
 //     int[][] dir = {{-2, -1}, {-1, -2}, {1, -2}, {2, -1}, {-2, 1}, {-1, 2}, {1, 2}, {2, 1}};
 //     int MOD = 1_000_000_007;
