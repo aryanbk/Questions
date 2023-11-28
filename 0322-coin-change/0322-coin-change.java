@@ -1,11 +1,12 @@
 class Solution {
     int[][] memo;
     public int coinChange(int[] coins, int amount) {
-        memo = new int[coins.length+1][amount+1];
+        int n = coins.length;
+        memo = new int[n+1][amount+1];
         for(int[] m1: memo) Arrays.fill(m1, -1);
         
-        help(coins.length, coins, amount);
-        return memo[coins.length][amount]>10000 ? -1 : memo[coins.length][amount];
+        help(n, coins, amount);
+        return memo[n][amount]>10000 ? -1 : memo[n][amount];
     }
     private int help(int l, int[] coins, int amt){
         if(l==0) return amt==0? 0: 100001;
