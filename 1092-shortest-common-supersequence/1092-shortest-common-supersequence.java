@@ -1,7 +1,9 @@
 // dp - tabulation
 // TC O(l1 * l2)
 // SC O(l1 * l2)
-// space opti - O(l1)
+// space opti - O(l1) (this wont be useful to print String - it's just of length of String)
+//
+// another approch return l1 + l2 - LCS(s1, s2);
 //
 class Solution {
     public String shortestCommonSupersequence(String str1, String str2) {
