@@ -1,26 +1,50 @@
 class Solution {
-    int[][] memo;
-    
     public int maxProfit(int[] prices) {
-        memo = new int[prices.length+1][2];
-        for(int[] row: memo) Arrays.fill(row, -1000000);
-        return find(0, 1, prices); //buy==1 means to buy and 0 means to sell
-    }
-    
-    private int find(int i, int buy, int[] prices){
-        if(i==prices.length)
-            return 0;
+        int n = prices.length;
+        int[][] dp = new int[n+1][2];
         
-        if(memo[i][buy] != -1000000) return memo[i][buy];
-        
-        int buyOrSell = find(i+1, buy^1, prices) + (prices[i] * (buy==1 ? -1 : 1));
-        int hodl = find(i+1, buy, prices);
-        
-        memo[i][buy] = Math.max(buyOrSell, hodl);
-        
-        return memo[i][buy];
+        for(int i=0; i<=n; ++i){
+            for(int j=0; j<2; ++j){
+                if(i==0) dp[i][j] = j==1 ? -100000 : 0;
+                else{
+                    int buyOrSell = dp[i-1][j^1] + (prices[i-1]*(j==1 ? -1 : 1));
+                    int hodl = dp[i-1][j];
+                    dp[i][j] = Math.max(buyOrSell, hodl);
+                }
+            }
+        }
+        return dp[n][0];
     }
 }
+
+
+
+// DP - memo O(n*2) O(n*2)
+//
+//
+// class Solution {
+//     int[][] memo;
+    
+//     public int maxProfit(int[] prices) {
+//         memo = new int[prices.length+1][2];
+//         for(int[] row: memo) Arrays.fill(row, -1000000);
+//         return find(0, 1, prices); //buy==1 means to buy and 0 means to sell
+//     }
+    
+//     private int find(int i, int buy, int[] prices){
+//         if(i==prices.length)
+//             return 0;
+        
+//         if(memo[i][buy] != -1000000) return memo[i][buy];
+        
+//         int buyOrSell = find(i+1, buy^1, prices) + (prices[i] * (buy==1 ? -1 : 1));
+//         int hodl = find(i+1, buy, prices);
+        
+//         memo[i][buy] = Math.max(buyOrSell, hodl);
+        
+//         return memo[i][buy];
+//     }
+// }
 
 
 // DP - memo
