@@ -4,19 +4,20 @@ class Solution {
         int[][] dp = new int[n+1][2];
         
         for(int i=0; i<=n; ++i){
-            for(int j=0; j<2; ++j){
-                if(i==0) dp[i][j] = j==1 ? -100000 : 0;
-                else{
-                    int buyOrSell = dp[i-1][j^1] + (prices[i-1]*(j==1 ? -1 : 1));
-                    int hodl = dp[i-1][j];
-                    dp[i][j] = Math.max(buyOrSell, hodl);
-                }
+            if(i==0){
+                dp[i][0] = 0;
+                dp[i][1] = -1000000;
+            }
+            else{
+                // dp[currLength][buy] = Math.max(hodl, buyOrSell);
+                dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1]+prices[i-1]); // to sell
+                
+                dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0]-prices[i-1]); // to buy
             }
         }
-        return dp[n][0];
+        return dp[n][0]; // Maximum profit when not holding any stock after all transactions
     }
 }
-
 
 
 // DP - memo O(n*2) O(n*2)
@@ -48,8 +49,8 @@ class Solution {
 
 
 // DP - memo
-//
-//
+
+
 // class Solution {
 //     int[][] memo;
     
@@ -106,7 +107,8 @@ class Solution {
 // class Solution {
 //     public int maxProfit(int[] prices) {
 //         long[] prev = new long[]{0, (long)Integer.MIN_VALUE};
-//         for(int i=1; i<prices.length+1; ++i) prev = new long[]{Math.max(prev[0], prices[i-1]+prev[1]), Math.max(prev[1], -prices[i-1]+prev[0])};
+//         for(int i=1; i<prices.length+1; ++i) 
+//             prev = new long[]{Math.max(prev[0], prices[i-1]+prev[1]), Math.max(prev[1], -prices[i-1]+prev[0])};
 //         return (int)prev[0];
 //     }
 // }
