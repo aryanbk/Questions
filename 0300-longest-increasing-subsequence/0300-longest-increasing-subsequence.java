@@ -1,19 +1,46 @@
+// tabulation
+// 1D array
+// 
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
-        int[][] dp = new int[n+1][n+1];
+        int[]dp = new int[n+1];
         
         for(int i=1; i<n+1; ++i){
+            int[] newDp = new int[n+1];
             for(int j=0; j<n+1; ++j){
-                dp[i][j] = dp[i-1][j];
+                newDp[j] = dp[j];
                 if(j==n || nums[i-1] < nums[j])
-                    dp[i][j] = Math.max(dp[i][j], 1+dp[i-1][i-1]);
+                    newDp[j] = Math.max(newDp[j], 1+dp[i-1]);
             }
+            dp = newDp;
         }
         
-        return dp[n][n];
+        return dp[n];
     }
 }
+
+
+
+// tabulation
+// 2D array
+//
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int n = nums.length;
+//         int[][] dp = new int[n+1][n+1];
+        
+//         for(int i=1; i<n+1; ++i){
+//             for(int j=0; j<n+1; ++j){
+//                 dp[i][j] = dp[i-1][j];
+//                 if(j==n || nums[i-1] < nums[j])
+//                     dp[i][j] = Math.max(dp[i][j], 1+dp[i-1][i-1]);
+//             }
+//         }
+        
+//         return dp[n][n];
+//     }
+// }
 
 // i == length of array
 // j == index of element from which last element of subseq should be lesser
