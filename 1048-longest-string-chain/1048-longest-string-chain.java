@@ -3,13 +3,7 @@ class Solution {
     
     public int longestStrChain(String[] words) {
         Arrays.sort(words, Comparator.comparingInt(String::length));
-        // System.out.println(Arrays.toString(words));
         int n = words.length;
-        map = new int[n][26];
-        for(int w=0; w<words.length; ++w){
-            for(int i=0; i<words[w].length(); ++i)
-                map[w][i]++;
-        }
         return lengthOfLIS(words);
     }
     public int lengthOfLIS(String[] nums) {
