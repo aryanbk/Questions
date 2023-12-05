@@ -1,4 +1,4 @@
-// tabulation
+// tabulation (instead of starting j at 0, start j from i)
 // 1D array
 // 
 class Solution {
@@ -8,7 +8,7 @@ class Solution {
         
         for(int i=1; i<n+1; ++i){
             int[] newDp = new int[n+1];
-            for(int j=0; j<n+1; ++j){
+            for(int j=i; j<n+1; ++j){
                 newDp[j] = dp[j];
                 if(j==n || nums[i-1] < nums[j])
                     newDp[j] = Math.max(newDp[j], 1+dp[i-1]);
@@ -19,6 +19,29 @@ class Solution {
         return dp[n];
     }
 }
+
+
+// tabulation
+// 1D array
+// 
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int n = nums.length;
+//         int[]dp = new int[n+1];
+        
+//         for(int i=1; i<n+1; ++i){
+//             int[] newDp = new int[n+1];
+//             for(int j=0; j<n+1; ++j){
+//                 newDp[j] = dp[j];
+//                 if(j==n || nums[i-1] < nums[j])
+//                     newDp[j] = Math.max(newDp[j], 1+dp[i-1]);
+//             }
+//             dp = newDp;
+//         }
+        
+//         return dp[n];
+//     }
+// }
 
 
 
