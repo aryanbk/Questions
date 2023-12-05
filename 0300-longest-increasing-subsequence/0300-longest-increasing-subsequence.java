@@ -1,27 +1,48 @@
-// tabulation (instead of starting j at 0, start j from i)
-// 1D array
-// 
+// dp[i] = length of LIS ending at index i of nums;
+//
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
-        int[]dp = new int[n+1];
+        int[]dp = new int[n];
+        Arrays.fill(dp, 1);
+        int ans = 1;
         
-        for(int i=1; i<n+1; ++i){
-            int[] newDp = new int[n+1];
-            for(int j=i; j<n+1; ++j){
-                newDp[j] = dp[j];
-                if(j==n || nums[i-1] < nums[j])
-                    newDp[j] = Math.max(newDp[j], 1+dp[i-1]);
+        for(int i=0; i<n; ++i){
+            for(int j=0; j<i; ++j){
+                if(nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j]+1);
             }
-            dp = newDp;
+            ans = Math.max(ans, dp[i]);
         }
         
-        return dp[n];
+        return ans;
     }
 }
 
 
-// tabulation
+// tabulation (instead of starting j at 0, start j from i)
+// 1D array
+// 
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int n = nums.length;
+//         int[]dp = new int[n+1];
+        
+//         for(int i=1; i<n+1; ++i){
+//             int[] newDp = new int[n+1];
+//             for(int j=i; j<n+1; ++j){
+//                 newDp[j] = dp[j];
+//                 if(j==n || nums[i-1] < nums[j])
+//                     newDp[j] = Math.max(newDp[j], 1+dp[i-1]);
+//             }
+//             dp = newDp;
+//         }
+        
+//         return dp[n];
+//     }
+// }
+
+
+// tabulation 
 // 1D array
 // 
 // class Solution {
