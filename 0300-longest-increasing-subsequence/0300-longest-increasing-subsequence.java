@@ -5,12 +5,9 @@ class Solution {
         
         for(int i=1; i<n+1; ++i){
             for(int j=0; j<n+1; ++j){
-                if(j==n) dp[i][j] = Math.max(dp[i-1][j], 1+dp[i-1][i-1]);
-                else{
-                    dp[i][j] = dp[i-1][j];
-                    if(nums[i-1] < nums[j])
-                        dp[i][j] = Math.max(dp[i][j], 1+dp[i-1][i-1]);
-                }
+                dp[i][j] = dp[i-1][j];
+                if(j==n || nums[i-1] < nums[j])
+                    dp[i][j] = Math.max(dp[i][j], 1+dp[i-1][i-1]);
             }
         }
         
