@@ -1,30 +1,51 @@
-// binary search O(n logn)
-// 
+// binary search built in method
 // 
 class Solution {
     public int lengthOfLIS(int[] nums) {
         int len = 0;
-        for(int n: nums){
-            if(len==0 || nums[len-1] < n)
+        for (int n : nums) {
+            if (len == 0 || nums[len - 1] < n)
                 nums[len++] = n;
-            else
-                nums[bsLowerBound(0, len-1, n, nums)] = n;
+            else {
+                int insertionPoint = Arrays.binarySearch(nums, 0, len, n);
+                if (insertionPoint < 0)
+                    insertionPoint = -(insertionPoint + 1);
+                nums[insertionPoint] = n;
+            }
         }
         return len;
     }
-    
-    private int bsLowerBound(int left, int right, int x, int[] nums) {
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] >= x) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
-        return left;
-    }
 }
+
+
+
+// // binary search O(n logn)
+// // 
+// // 
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int len = 0;
+//         for(int n: nums){
+//             if(len==0 || nums[len-1] < n)
+//                 nums[len++] = n;
+//             else
+//                 nums[bsLowerBound(0, len-1, n, nums)] = n;
+//         }
+//         return len;
+//     }
+    
+//     private int bsLowerBound(int left, int right, int x, int[] nums) {
+//         while (left <= right) {
+//             int mid = left + (right - left) / 2;
+//             if (nums[mid] >= x) {
+//                 right = mid - 1;
+//             } else {
+//                 left = mid + 1;
+//             }
+//         }
+//         return left;
+//     }
+// }
 
 
 // //printing LIS
