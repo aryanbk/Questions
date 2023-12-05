@@ -27,8 +27,52 @@ class Solution {
 }
 
 
-// dp[i] = length of LIS ending at index i of nums;
-//
+// //printing LIS
+// //
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int n = nums.length;
+//         int[] dp = new int[n];
+//         Arrays.fill(dp, 1);
+//         int[] map = new int[n];
+        
+//         for(int i = 0; i < n; ++i) {
+//             for(int j = 0; j < i; ++j) {
+//                 if(nums[i] > nums[j]) {
+//                     if(dp[j] + 1 > dp[i]) {
+//                         dp[i] = dp[j] + 1;
+//                         map[i] = j;
+//                     }
+//                 }
+//             }
+//         }
+        
+//         int maxLen = 0;
+//         int endIdx = 0;
+//         for(int i = 0; i < n; ++i) {
+//             if(dp[i] > maxLen) {
+//                 maxLen = dp[i];
+//                 endIdx = i;
+//             }
+//         }
+        
+//         List<Integer> listLIS = new ArrayList<>();
+//         while(maxLen > 0) {
+//             listLIS.add(nums[endIdx]);
+//             endIdx = map[endIdx];
+//             maxLen--;
+//         }
+        
+//         Collections.reverse(listLIS);
+//         System.out.println(listLIS);
+        
+//         return listLIS.size(); // Return the length of LIS
+//     }
+// }
+
+
+// // dp[i] = length of LIS ending at index i of nums;
+// //
 // class Solution {
 //     public int lengthOfLIS(int[] nums) {
 //         int n = nums.length;
@@ -48,9 +92,9 @@ class Solution {
 // }
 
 
-// tabulation (instead of starting j at 0, start j from i)
-// 1D array
-// 
+// // tabulation (instead of starting j at 0, start j from i)
+// // 1D array
+// // 
 // class Solution {
 //     public int lengthOfLIS(int[] nums) {
 //         int n = nums.length;
@@ -71,9 +115,9 @@ class Solution {
 // }
 
 
-// tabulation 
-// 1D array
-// 
+// // tabulation 
+// // 1D array
+// // 
 // class Solution {
 //     public int lengthOfLIS(int[] nums) {
 //         int n = nums.length;
@@ -95,9 +139,9 @@ class Solution {
 
 
 
-// tabulation
-// 2D array
-//
+// // tabulation
+// // 2D array
+// //
 // class Solution {
 //     public int lengthOfLIS(int[] nums) {
 //         int n = nums.length;
@@ -114,10 +158,9 @@ class Solution {
 //         return dp[n][n];
 //     }
 // }
-
-// i == length of array
-// j == index of element from which last element of subseq should be lesser
-// if j==n take it as +inf and consider all current element are smaller than this
+// // i == length of array
+// // j == index of element from which last element of subseq should be lesser
+// // if j==n take it as +inf and consider all current element are smaller than this
 
 
 
