@@ -1,22 +1,51 @@
-// dp[i] = length of LIS ending at index i of nums;
-//
+// binary search O(n logn)
+// 
+// 
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int n = nums.length;
-        int[]dp = new int[n];
-        Arrays.fill(dp, 1);
-        int ans = 1;
-        
-        for(int i=0; i<n; ++i){
-            for(int j=0; j<i; ++j){
-                if(nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j]+1);
-            }
-            ans = Math.max(ans, dp[i]);
+        int len = 0;
+        for(int n: nums){
+            if(len==0 || nums[len-1] < n)
+                nums[len++] = n;
+            else
+                nums[bsLowerBound(0, len-1, n, nums)] = n;
         }
-        
-        return ans;
+        return len;
+    }
+    
+    private int bsLowerBound(int left, int right, int x, int[] nums) {
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] >= x) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
     }
 }
+
+
+// dp[i] = length of LIS ending at index i of nums;
+//
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int n = nums.length;
+//         int[]dp = new int[n];
+//         Arrays.fill(dp, 1);
+//         int ans = 1;
+        
+//         for(int i=0; i<n; ++i){
+//             for(int j=0; j<i; ++j){
+//                 if(nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j]+1);
+//             }
+//             ans = Math.max(ans, dp[i]);
+//         }
+        
+//         return ans;
+//     }
+// }
 
 
 // tabulation (instead of starting j at 0, start j from i)
