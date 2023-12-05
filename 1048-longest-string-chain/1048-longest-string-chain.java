@@ -1,6 +1,4 @@
 class Solution {
-    int[][] map;
-    
     public int longestStrChain(String[] words) {
         Arrays.sort(words, Comparator.comparingInt(String::length));
         int n = words.length;
