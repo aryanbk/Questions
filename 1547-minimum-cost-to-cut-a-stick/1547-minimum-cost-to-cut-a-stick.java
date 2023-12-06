@@ -20,11 +20,10 @@ class Solution {
         
         if(memo[i][j] != -1) return memo[i][j]; 
         
-        int ans = 10000000;
-        for(int k=i+1; k<j; ++k){
-            ans = Math.min(ans, cuts.get(j)-cuts.get(i) + mcm(i, k, cuts) + mcm(k, j, cuts));
-        }
-        memo[i][j] = ans==10000000 ? 0 : ans;
+        memo[i][j] = 10000000;
+        for(int k=i+1; k<j; ++k)
+            memo[i][j] = Math.min(memo[i][j], cuts.get(j)-cuts.get(i) + mcm(i, k, cuts) + mcm(k, j, cuts));
+        
         return memo[i][j];
     }
 }
