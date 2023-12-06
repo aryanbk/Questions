@@ -1,5 +1,4 @@
 class Solution {
-    int[][] memo;
     public int minCost(int n, int[] cuts) {
         
         // creating newCuts with 0 and n in it
@@ -10,23 +9,57 @@ class Solution {
             newCuts.add(cut);
         }
         Collections.sort(newCuts);
+        int L = newCuts.size();
 
-        memo = new int[103][103];
-        for(int[] row: memo) Arrays.fill(row, -1);
-        return mcm(0, newCuts.size()-1, newCuts);
-    }
-    private int mcm(int i, int j, List<Integer> cuts){
-        if(i>=j-1) return 0;
+        int[][] dp = new int[L][L];
         
-        if(memo[i][j] != -1) return memo[i][j]; 
         
-        memo[i][j] = 10000000;
-        for(int k=i+1; k<j; ++k)
-            memo[i][j] = Math.min(memo[i][j], cuts.get(j)-cuts.get(i) + mcm(i, k, cuts) + mcm(k, j, cuts));
+        for(int i=L-1; i>=0; --i){
+            for(int j=i+1; j<L; ++j){
+                for(int k=i+1; k<j; ++k){
+                dp[i][j] = Math.min(dp[i][j]==0 ? Integer.MAX_VALUE : dp[i][j],
+                    newCuts.get(j) - newCuts.get(i) + dp[i][k] + dp[k][j]);
+                }
+            }
+        }
+        return dp[0][L-1];
         
-        return memo[i][j];
+        
     }
 }
+
+
+// // std DP memo by modifying cuts
+
+// class Solution {
+//     int[][] memo;
+//     public int minCost(int n, int[] cuts) {
+        
+//         // creating newCuts with 0 and n in it
+//         List<Integer> newCuts = new ArrayList<>();
+//         newCuts.add(0);
+//         newCuts.add(n);
+//         for (int cut : cuts) {
+//             newCuts.add(cut);
+//         }
+//         Collections.sort(newCuts);
+
+//         memo = new int[103][103];
+//         for(int[] row: memo) Arrays.fill(row, -1);
+//         return mcm(0, newCuts.size()-1, newCuts);
+//     }
+//     private int mcm(int i, int j, List<Integer> cuts){
+//         if(i>=j-1) return 0;
+        
+//         if(memo[i][j] != -1) return memo[i][j]; 
+        
+//         memo[i][j] = 10000000;
+//         for(int k=i+1; k<j; ++k)
+//             memo[i][j] = Math.min(memo[i][j], cuts.get(j)-cuts.get(i) + mcm(i, k, cuts) + mcm(k, j, cuts));
+        
+//         return memo[i][j];
+//     }
+// }
 
 
 // // it uses map
