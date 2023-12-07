@@ -1,3 +1,9 @@
+
+
+
+
+// DP - Memo
+
 class Solution {
     public int maxSumAfterPartitioning(int[] arr, int k) {
         return mcm(0, arr.length-1, arr, k, new Integer[arr.length][arr.length]);
@@ -8,7 +14,7 @@ class Solution {
         if(memo[i][j] != null) return memo[i][j];
         memo[i][j] = 0;
         int mx = 0;
-        for(int p=i; p<k+i && p<arr.length; ++p){
+        for(int p=i; p<k+i && p<=j; ++p){
             mx = Math.max(mx, arr[p]);
             memo[i][j] = Math.max(memo[i][j], ((p-i+1)*mx) + mcm(p+1, j, arr, k, memo));
         }
