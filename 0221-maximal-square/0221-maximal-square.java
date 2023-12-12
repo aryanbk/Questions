@@ -1,3 +1,11 @@
+// // we can also use char as number if its '0' make it (char)0
+// // we can also use char as number if its '10' make it (char)10
+// // to get O(1) space complexity
+
+
+
+// // O(m*n)
+//
 class Solution {
     public int maximalSquare(char[][] matrix) {
         int m = matrix.length;
@@ -8,7 +16,7 @@ class Solution {
             for(int j=0; j<n; ++j){
                 mat[i][j] = matrix[i][j] == '1' ? 1 : 0;
             }
-        }
+        }   
         
         int ans = 0;
         
