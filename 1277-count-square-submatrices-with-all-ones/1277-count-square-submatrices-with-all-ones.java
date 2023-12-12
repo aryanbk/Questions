@@ -7,6 +7,7 @@ class Solution {
         for(int i=0; i<n; ++i){ 
             for(int j=0; j<m; ++j){
                 if(mat[i][j] == 1 && i>0 && j>0){
+                    // min(up, left, diag) + 1
                     mat[i][j] = Math.min(Math.min(mat[i-1][j], mat[i][j-1]), mat[i-1][j-1]) + 1;
                 }
                 ans += mat[i][j];
