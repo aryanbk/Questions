@@ -1,18 +1,44 @@
+// // Tabulation - Space optimized
+// // O(n*3)
+// // O(1)
+//
 class Solution {
     public int maxSumDivThree(int[] nums) {
         int n = nums.length;
-        int[][] dp = new int[n+1][3];
-        dp[0] = new int[]{0, -1000000000, -1000000000};
+        int[] dp = new int[]{0, -1000000000, -1000000000};
         
         for(int i=1; i<n+1; ++i){
+            int[] newDp = new int[3];
             for(int j=0; j<3; ++j){
-                dp[i][j] = Math.max(dp[i-1][j], nums[i-1] + dp[i-1][(j+nums[i-1])%3]);
+                newDp[j] = Math.max(dp[j], nums[i-1] + dp[(j+nums[i-1])%3]);
             }
+            dp = newDp;
         }
         
-        return dp[n][0];
+        return dp[0];
     }
 }
+
+
+// // Tabulation
+// // O(n*3)
+// // O(n*3)
+//
+// class Solution {
+//     public int maxSumDivThree(int[] nums) {
+//         int n = nums.length;
+//         int[][] dp = new int[n+1][3];
+//         dp[0] = new int[]{0, -1000000000, -1000000000};
+        
+//         for(int i=1; i<n+1; ++i){
+//             for(int j=0; j<3; ++j){
+//                 dp[i][j] = Math.max(dp[i-1][j], nums[i-1] + dp[i-1][(j+nums[i-1])%3]);
+//             }
+//         }
+        
+//         return dp[n][0];
+//     }
+// }
 
 
 // // Memo
