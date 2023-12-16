@@ -1,32 +1,62 @@
 class Solution {
-    int m;
-    int n;
-    int[][] memo;
-    
-    public int calculateMinimumHP(int[][] dungeon) {
-        m = dungeon.length;
-        n = dungeon[0].length;
+    public int calculateMinimumHP(int[][] dun) {
+        int m = dun.length;
+        int n = dun[0].length;
+        int[][] dp  = new int[m][n];
         
-        memo  = new int[m][n];
-        for(int[] row: memo) Arrays.fill(row, -1);
+        for(int i=m-1; i>=0; --i){
+            for(int j=n-1; j>=0; --j){
+                if(i==m-1 && j==n-1)
+                    dp[i][j] = Math.max(-1*dun[i][j], 0);
+                else{
+                    int res = 1000000000;
+                    if(i<m-1) res = Math.min(res, dp[i+1][j]);
+                    if(j<n-1) res = Math.min(res, dp[i][j+1]);
+                    res += -1*dun[i][j];
+                    
+                    dp[i][j] = Math.max(res, 0);
+                }
+            }
+        }
         
-        return help(0, 0, dungeon) + 1;
-    }
-    
-    private int help(int i, int j, int[][] dun){
-        if(i<0 || i>=m || j<0 || j>=n)
-            return 100000000;
-        if(i==m-1 && j==n-1)
-            return Math.max(dun[i][j]*-1, 0);
-        if(memo[i][j] != -1)
-            return memo[i][j];
-        
-        int ans = Math.min(help(i+1, j, dun), help(i, j+1, dun)) + -1*dun[i][j];
-        memo[i][j] = Math.max(ans, 0);
-        
-        return memo[i][j];
+        return dp[0][0]+1;
     }
 }
+
+
+
+
+// // DP - memo - O(m*n)
+// 
+// class Solution {
+//     int m;
+//     int n;
+//     int[][] memo;
+    
+//     public int calculateMinimumHP(int[][] dungeon) {
+//         m = dungeon.length;
+//         n = dungeon[0].length;
+        
+//         memo  = new int[m][n];
+//         for(int[] row: memo) Arrays.fill(row, -1);
+        
+//         return help(0, 0, dungeon) + 1;
+//     }
+    
+//     private int help(int i, int j, int[][] dun){
+//         if(i<0 || i>=m || j<0 || j>=n)
+//             return 100000000;
+//         if(i==m-1 && j==n-1)
+//             return Math.max(dun[i][j]*-1, 0);
+//         if(memo[i][j] != -1)
+//             return memo[i][j];
+        
+//         int ans = Math.min(help(i+1, j, dun), help(i, j+1, dun)) + -1*dun[i][j];
+//         memo[i][j] = Math.max(ans, 0);
+        
+//         return memo[i][j];
+//     }
+// }
 
 
 // class Solution {
