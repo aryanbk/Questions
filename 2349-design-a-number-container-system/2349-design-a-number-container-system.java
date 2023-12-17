@@ -12,7 +12,8 @@ class NumberContainers {
         if(map2.containsKey(index)){ // check if given idx alredy assign to another num or not
             int prevNum = map2.get(index);
             map.get(prevNum).remove(index);
-            // map.remove(index); // remove // this line cased WA#2
+            // map.remove(index); // remove // this line cased WA#2 
+            // it should be map2 here, if not remove then also fine
         }
         
         if(map.containsKey(number)){
