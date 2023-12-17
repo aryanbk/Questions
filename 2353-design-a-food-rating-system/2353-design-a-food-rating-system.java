@@ -1,6 +1,4 @@
 class FoodRatings {
-    
-    
     Map<String, PriorityQueue<Food>> pqMap = new HashMap<>();
     Map<String, Food> map = new HashMap<>();
     
@@ -8,7 +6,7 @@ class FoodRatings {
         int n = foods.length;
         for(int i=0; i<n; i++){
             Food curr = new Food(ratings[i], foods[i], cuisines[i]);
-            if(pqMap.containsKey(cuisines[i]))
+            if(pqMap.containsKey(cuisines[i])) // add in pqMap
                 pqMap.get(cuisines[i]).offer(curr);
             else{
                 PriorityQueue<Food> pq = new PriorityQueue<>();
@@ -16,16 +14,16 @@ class FoodRatings {
                 pqMap.put(cuisines[i], pq);
             }
             
-            map.put(foods[i], curr);
+            map.put(foods[i], curr); // add in map
         }
     }
     
     public void changeRating(String food, int newRating) {
-        Food curr = map.get(food);
-        pqMap.get(curr.cuisine).remove(curr);
+        Food curr = map.get(food); // find Food obj based on name
+        pqMap.get(curr.cuisine).remove(curr); // remove from pq
         
         Food newCurr = new Food(newRating, food, curr.cuisine);
-        pqMap.get(curr.cuisine).offer(newCurr);
+        pqMap.get(curr.cuisine).offer(newCurr); // offer to pq
         map.put(food, newCurr); // dont forget this line
     }
     
