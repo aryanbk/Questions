@@ -7,14 +7,34 @@ class Solution {
         
         for(int i=n-1; i>=0; --i){
             for(int j=i; j<n; ++j){
-                dp[i][j] = -1000000000; // WA #2
-                if(i<n-1) dp[i][j] = Math.max(dp[i][j], nums[i]-dp[i+1][j]);
-                if(j>0) dp[i][j] = Math.max(dp[i][j], nums[j]-dp[i][j-1]);
+                if(i==j)
+                    dp[i][j] = nums[i];
+                else
+                    dp[i][j] = Math.max(nums[i]-dp[i+1][j], nums[j]-dp[i][j-1]);
             }
         }
         return dp[0][n-1] >= 0;
     }
 }
+
+
+// class Solution {
+//     public boolean predictTheWinner(int[] nums) {
+//         int n = nums.length;
+//         if(n%2==0 || n==1) return true; // WA #3
+        
+//         int[][] dp = new int[n][n];
+        
+//         for(int i=n-1; i>=0; --i){
+//             for(int j=i; j<n; ++j){
+//                 dp[i][j] = -1000000000; // WA #2
+//                 if(i<n-1) dp[i][j] = Math.max(dp[i][j], nums[i]-dp[i+1][j]);
+//                 if(j>0) dp[i][j] = Math.max(dp[i][j], nums[j]-dp[i][j-1]);
+//             }
+//         }
+//         return dp[0][n-1] >= 0;
+//     }
+// }
 
 // // memo
 //
