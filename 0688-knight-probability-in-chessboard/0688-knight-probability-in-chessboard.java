@@ -2,35 +2,74 @@ class Solution {
     public double knightProbability(int n, int k, int row, int col) {
         
         int[][] dir = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
-        Double[][][] dp = new Double[k+1][n][n];
-        for(var r: dp[0]) Arrays.fill(r, new Double(1));
+        Double[][] dp = new Double[n][n];
+        for(var r: dp) Arrays.fill(r, new Double(1));
         
         for(int x=1; x<=k; ++x){
+            
+            Double[][] t = new Double[n][n];
             for(int i=0; i<n; ++i){
                 for(int j=0; j<n; ++j){
                     
-                    dp[x][i][j] = new Double(0);
+                    t[i][j] = new Double(0);
                     
                     
                     for(int[] d: dir){
                         if(isValid(i+d[0], j+d[1], n))
-                            dp[x][i][j] += dp[x-1][i+d[0]][j+d[1]];
+                            t[i][j] += dp[i+d[0]][j+d[1]];
                         
                         if(isValid(i+d[1], j+d[0], n))
-                            dp[x][i][j] += dp[x-1][i+d[1]][j+d[0]];
+                            t[i][j] += dp[i+d[1]][j+d[0]];
                     }
-                    dp[x][i][j] /= 8;
+                    t[i][j] /= 8;
                 }
             }
+            dp = t;
         }
         
-        return dp[k][row][col];
+        return dp[row][col];
     }
     
     boolean isValid(int i, int j, int n){
         return i>=0 && i<n && j>=0 && j<n;
     }
 }
+
+
+
+// class Solution {
+//     public double knightProbability(int n, int k, int row, int col) {
+        
+//         int[][] dir = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
+//         Double[][][] dp = new Double[k+1][n][n];
+//         for(var r: dp[0]) Arrays.fill(r, new Double(1));
+        
+//         for(int x=1; x<=k; ++x){
+//             for(int i=0; i<n; ++i){
+//                 for(int j=0; j<n; ++j){
+                    
+//                     dp[x][i][j] = new Double(0);
+                    
+                    
+//                     for(int[] d: dir){
+//                         if(isValid(i+d[0], j+d[1], n))
+//                             dp[x][i][j] += dp[x-1][i+d[0]][j+d[1]];
+                        
+//                         if(isValid(i+d[1], j+d[0], n))
+//                             dp[x][i][j] += dp[x-1][i+d[1]][j+d[0]];
+//                     }
+//                     dp[x][i][j] /= 8;
+//                 }
+//             }
+//         }
+        
+//         return dp[k][row][col];
+//     }
+    
+//     boolean isValid(int i, int j, int n){
+//         return i>=0 && i<n && j>=0 && j<n;
+//     }
+// }
 
 
 
