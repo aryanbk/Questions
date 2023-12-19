@@ -1,17 +1,14 @@
 class Solution {
     public int maxTurbulenceSize(int[] arr) {
         int n = arr.length;
-        if(n==1) return 1;
         int ans = 1;
-        int l = 0;
         
-        for(int r=1; r<n; ++r){
-            if(arr[r] == arr[r-1]){
+        for(int r=1, l=0; r<n; ++r){
+            if(arr[r] == arr[r-1])
                 l=r;
-            }
-            else if(r>1 && arr[r]>arr[r-1] == arr[r-1]>arr[r-2]){
+            else if(r>1 && arr[r]>arr[r-1] == arr[r-1]>arr[r-2])
                 l = r -1;
-            }
+            
             ans = Math.max(ans, r-l+1);
         }
         
