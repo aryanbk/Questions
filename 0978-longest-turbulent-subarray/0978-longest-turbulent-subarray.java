@@ -2,19 +2,48 @@ class Solution {
     public int maxTurbulenceSize(int[] arr) {
         int n = arr.length;
         int ans = 1;
+        int[][] dp = new int[n][2];
+        dp[0][0] = dp[0][1] = 1;
         
-        for(int r=1, l=0; r<n; ++r){
-            if(arr[r] == arr[r-1])
-                l=r;
-            else if(r>1 && arr[r]>arr[r-1] == arr[r-1]>arr[r-2])
-                l = r -1;
-            
-            ans = Math.max(ans, r-l+1);
+        for(int i=1; i<n; ++i){
+            if(arr[i]>arr[i-1]){
+                dp[i][1] = dp[i-1][0] + 1;
+                dp[i][0] = 1;
+                ans = Math.max(ans, dp[i][1]);
+            }
+            else if(arr[i]<arr[i-1]){
+                dp[i][0] = dp[i-1][1] + 1;
+                dp[i][1] = 1;
+                ans = Math.max(ans, dp[i][0]);
+            }
+            else{
+                dp[i] = new int[]{1, 1};
+            }
         }
-        
         return ans;
     }
 }
+
+
+// // No DP - sliding window
+//
+// class Solution {
+//     public int maxTurbulenceSize(int[] arr) {
+//         int n = arr.length;
+//         int ans = 1;
+        
+//         for(int r=1, l=0; r<n; ++r){
+//             if(arr[r] == arr[r-1])
+//                 l=r;
+//             else if(r>1 && arr[r]>arr[r-1] == arr[r-1]>arr[r-2])
+//                 l = r -1;
+            
+//             ans = Math.max(ans, r-l+1);
+//         }
+        
+//         return ans;
+//     }
+// }
 
 // // tried to contribute a testcase
 //
