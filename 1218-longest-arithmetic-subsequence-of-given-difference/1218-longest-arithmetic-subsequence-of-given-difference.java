@@ -3,20 +3,34 @@ class Solution {
         int n = arr.length;
         int ans = 0;
         Map<Integer, Integer> map = new HashMap<>();
-        
         for(int i=0; i<n; ++i){
-            if(map.containsKey(arr[i]-diff)){
-                int one = map.get(arr[i]-diff)+1;
-                int two = map.getOrDefault(arr[i], 0);
-                map.put(arr[i], Math.max(one, two));
-            }
-            else
-                map.put(arr[i], 0);
-            ans = Math.max(ans, map.getOrDefault(arr[i], 0));
+            map.put(arr[i], map.getOrDefault(arr[i]-diff, 0)+1);
+            ans = Math.max(ans, map.get(arr[i]));
         }
-        return ans + 1;
+        return ans;
     }
 }
+
+
+// class Solution {
+//     public int longestSubsequence(int[] arr, int diff) {
+//         int n = arr.length;
+//         int ans = 0;
+//         Map<Integer, Integer> map = new HashMap<>();
+        
+//         for(int i=0; i<n; ++i){
+//             if(map.containsKey(arr[i]-diff)){
+//                 int one = map.get(arr[i]-diff)+1;
+//                 int two = map.getOrDefault(arr[i], 0);
+//                 map.put(arr[i], Math.max(one, two));
+//             }
+//             else
+//                 map.put(arr[i], 0);
+//             ans = Math.max(ans, map.getOrDefault(arr[i], 0));
+//         }
+//         return ans + 1;
+//     }
+// }
 
 
 // // TLE
