@@ -1,27 +1,49 @@
 class Solution {
-    Integer[][] memo;
-    
-    public int minScoreTriangulation(int[] values) {
-        int n = values.length;
-        memo = new Integer[n][n];
-        return mcm(0, n-1, values);
-    }
-    
-    int mcm(int i, int j, int[] val){
-        if(j-i<2) return 0;
+    public int minScoreTriangulation(int[] val) {
+        int n = val.length;
+        int[][] dp = new int[n][n];
         
-        if(memo[i][j] != null) return memo[i][j];
-        
-        long ans = Integer.MAX_VALUE;
-        for(int k=i+1; k<j; ++k){
-            long cur = val[i]*val[j]*val[k] + mcm(i, k, val) + mcm(k, j, val);
-            ans = Math.min(ans, cur);
+        for(int i=n-1; i>=0; --i){
+            for(int j=i+2; j<n; ++j){
+                long ans = Integer.MAX_VALUE;
+                for(int k=i+1; k<j; ++k){
+                    long cur = val[i]*val[j]*val[k] + dp[i][k] + dp[k][j];
+                    ans = Math.min(ans, cur);
+                }
+                dp[i][j] = (int)ans;
+            }
         }
+        return dp[0][n-1];
         
-        memo[i][j] = (int)ans;
-        return memo[i][j];
     }
 }
+
+
+
+// class Solution {
+//     Integer[][] memo;
+    
+//     public int minScoreTriangulation(int[] values) {
+//         int n = values.length;
+//         memo = new Integer[n][n];
+//         return mcm(0, n-1, values);
+//     }
+    
+//     int mcm(int i, int j, int[] val){
+//         if(j-i<2) return 0;
+        
+//         if(memo[i][j] != null) return memo[i][j];
+        
+//         long ans = Integer.MAX_VALUE;
+//         for(int k=i+1; k<j; ++k){
+//             long cur = val[i]*val[j]*val[k] + mcm(i, k, val) + mcm(k, j, val);
+//             ans = Math.min(ans, cur);
+//         }
+        
+//         memo[i][j] = (int)ans;
+//         return memo[i][j];
+//     }
+// }
 
 // // recurssion - TLE
 //
@@ -43,6 +65,9 @@ class Solution {
 
 
 
+
+// // failed attemps
+//
 // class Solution {
 //     int n;
 
