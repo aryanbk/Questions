@@ -1,6 +1,13 @@
 class Solution {
     public int buyChoco(int[] prices, int money) {
-        Arrays.sort(prices);
-        return money-prices[0]-prices[1] < 0 ? money : money-prices[0]-prices[1];
+        int a = 101;
+        int b = 101;
+        for(int p: prices){
+            if(p<a || p<b){
+                a = Math.min(a, b);
+                b = p;
+            }
+        }
+        return money-a-b<0 ? money : money-a-b;
     }
 }
