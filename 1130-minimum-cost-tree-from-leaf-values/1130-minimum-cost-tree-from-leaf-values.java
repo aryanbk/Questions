@@ -1,24 +1,24 @@
 class Solution {
     public int mctFromLeafValues(int[] arr) {
         int n = arr.length;
-        int[][][] dp = new int[n][n][3]; 
-        //[ans, val of curr node, max leaf node in this subtree]
+        int[][][] dp = new int[n][n][2]; 
+        //[ans, max leaf node in this subtree]
         
         for(int i=n-1; i>=0; --i){
             for(int j=i; j<n; ++j){
                 if(i==j){
-                    dp[i][j] = new int[]{0, arr[i], arr[i]};
+                    dp[i][j] = new int[]{0, arr[i]};
                     continue;
                 }
                 
-                int[] ans = new int[]{100000000, arr[i], arr[i]};
+                int[] ans = new int[]{100000000, arr[i]};
                 for(int k=i; k<j; ++k){
                     int[] left = dp[i][k];
                     int[] right = dp[k+1][j];
-                    int val = left[2]*right[2]; // val of curr node
-                    int sumt = left[0]+right[0]+val; // sumt of tree below
+                    int val = left[1]*right[1]; // val of curr node
+                    int sumt = left[0]+right[0]+val; // sumt of tree below - ans for currNode
                     if(sumt < ans[0])
-                        ans = new int[]{sumt, val, Math.max(left[2], right[2])};
+                        ans = new int[]{sumt, Math.max(left[1], right[1])};
                 }
                 
                 dp[i][j] = ans;
@@ -28,6 +28,38 @@ class Solution {
         return dp[0][n-1][0];
     }
 }
+
+
+// class Solution {
+//     public int mctFromLeafValues(int[] arr) {
+//         int n = arr.length;
+//         int[][][] dp = new int[n][n][3]; 
+//         //[ans, val of curr node, max leaf node in this subtree]
+        
+//         for(int i=n-1; i>=0; --i){
+//             for(int j=i; j<n; ++j){
+//                 if(i==j){
+//                     dp[i][j] = new int[]{0, arr[i], arr[i]};
+//                     continue;
+//                 }
+                
+//                 int[] ans = new int[]{100000000, arr[i], arr[i]};
+//                 for(int k=i; k<j; ++k){
+//                     int[] left = dp[i][k];
+//                     int[] right = dp[k+1][j];
+//                     int val = left[2]*right[2]; // val of curr node
+//                     int sumt = left[0]+right[0]+val; // sumt of tree below
+//                     if(sumt < ans[0])
+//                         ans = new int[]{sumt, val, Math.max(left[2], right[2])};
+//                 }
+                
+//                 dp[i][j] = ans;
+                
+//             }
+//         }
+//         return dp[0][n-1][0];
+//     }
+// }
 
 
 
