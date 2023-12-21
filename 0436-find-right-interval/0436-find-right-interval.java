@@ -1,3 +1,6 @@
+// // O(n log n)
+// // O(n)
+//
 class Solution {
     public int[] findRightInterval(int[][] intvl) {
         int n = intvl.length;
