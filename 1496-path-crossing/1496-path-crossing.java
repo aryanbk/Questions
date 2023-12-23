@@ -18,7 +18,6 @@ class Solution {
             else if(ch == 'E')
                 ++x;
             List<Integer> list = List.of(x, y);
-            System.out.println(list+" "+set);
             if(set.contains(list))
                 return true;
             set.add(list);
