@@ -12,7 +12,7 @@ class Solution {
         }
         
         
-        int[][][] dp = new int[n+1][n+1][d+1];
+        int[][][] dp = new int[n][n][d+1];
         
         for(int i=n-1; i>=0; --i){
             for(int j=i; j<n; ++j){
