@@ -1,13 +1,14 @@
 class Solution {
     public List<List<Integer>> findMatrix(int[] nums) {
-        int[] freq = new int[201];
+        int n = nums.length;
+        int[] freq = new int[n+1];
         
-        for(var n: nums)
-            freq[n]++;
+        for(var num: nums)
+            freq[num]++;
         
         var ans = new ArrayList<List<Integer>>();
         
-        for(int i=0; i<201; ++i){
+        for(int i=0; i<=n; ++i){
             for(int j=0; j<freq[i]; ++j){
                 if(ans.size() > j)
                     ans.get(j).add(i);
