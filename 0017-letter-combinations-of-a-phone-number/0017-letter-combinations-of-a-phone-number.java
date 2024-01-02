@@ -7,12 +7,12 @@ class Solution {
         if(digits.length() == 0) return ans;
         phone = new String[]{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         
-        help(0, digits, new StringBuilder());
+        bkt(0, digits, new StringBuilder());
         
         return ans;
     }
     
-    void help(int i, String digits, StringBuilder sb){
+    void bkt(int i, String digits, StringBuilder sb){
         if(i==digits.length()){
             ans.add(sb.toString());
             return;
@@ -23,7 +23,7 @@ class Solution {
         
         for(int x = 0; x < keys.length(); ++x){
             sb.append(keys.charAt(x));
-            help(i+1, digits, sb);
+            bkt(i+1, digits, sb);
             sb.deleteCharAt(sb.length() - 1);
         }
         
