@@ -1,15 +1,13 @@
 class Solution {
     public int countDistinct(int[] nums, int k, int p) {
         int n = nums.length;
-        int l = 0;
         int div = 0;
-        int ans = 0;
         
         Set<List<Integer>> set = new HashSet<>();
         List<Integer> list = new ArrayList<>();
         for(int x: nums) list.add(x);
         
-        for(int r=0; r<n; ++r){
+        for(int l=0, r=0; r<n; ++r){
             div += list.get(r)%p == 0 ? 1 : 0;
             
             while(l<n && div > k){
