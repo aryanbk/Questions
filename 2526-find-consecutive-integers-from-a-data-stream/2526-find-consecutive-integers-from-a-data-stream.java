@@ -3,6 +3,7 @@ class DataStream {
     int val;
     int k;
     int times;
+    
     public DataStream(int value, int k) {
         val = value;
         this.k = k;
@@ -10,10 +11,8 @@ class DataStream {
     }
     
     public boolean consec(int num) {
-        if(num == val){
-            times+=1;
-            return times >= k;
-        }
+        if(num == val)
+            return ++times >= k;
         times = 0;
         return false;
     }
