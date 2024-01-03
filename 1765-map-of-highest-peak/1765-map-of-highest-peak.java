@@ -24,13 +24,14 @@ class Solution {
                 q.poll();
                 
                 if(ans[i][j] != -1)
-                    continue;
+                    continue; // Important
                 
                 ans[i][j] = lvl;
 
                 for(int a=0; a<4; ++a){
                     int x = i + dir[a];
                     int y = j + dir[a+1];
+                    
                     if(x>=0 && x<m && y>=0 && y<n && ans[x][y] == -1)
                         q.offer(new int[]{x, y});
                 }
