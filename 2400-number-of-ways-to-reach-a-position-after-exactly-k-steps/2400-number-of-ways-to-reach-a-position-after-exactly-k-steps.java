@@ -1,22 +1,47 @@
+// we can take distance b/w them as a paramenter
+//
 class Solution {
     public int numberOfWays(int startPos, int endPos, int k) {
-        int[][] dp = new int[2*k + 2][k+1];
         int MOD = 1_000_000_007;
-        int end = k + Math.abs(startPos - endPos);
+        int dist = Math.abs(startPos - endPos);
+        int[][] dp = new int[k+1][dist + k + 2];
         
-        if(end >= dp.length)
-            return 0; // Runtime Error #2
-        dp[end][0] = 1;
+        dp[0][0] = 1;
         
-        for(int kk=1; kk<=k; ++kk){
-            for(int s=kk; s<dp.length-kk; ++s){
-                dp[s][kk] = (dp[s-1][kk-1] + dp[s+1][kk-1])%MOD;
+        for(int x=1; x<=k; ++x){
+            for(int d=0; d<=x; ++d){
+                dp[x][d] = (dp[x-1][Math.abs(d-1)] + dp[x-1][d+1]) % MOD;
             }
         }
         
-        return dp[k][k];
+        return dp[k][dist];
     }
 }
+
+
+
+// // My DP - tabulation
+//
+//
+// class Solution {
+//     public int numberOfWays(int startPos, int endPos, int k) {
+//         int[][] dp = new int[2*k + 2][k+1];
+//         int MOD = 1_000_000_007;
+//         int end = k + Math.abs(startPos - endPos);
+        
+//         if(end >= dp.length)
+//             return 0; // Runtime Error #2
+//         dp[end][0] = 1;
+        
+//         for(int kk=1; kk<=k; ++kk){
+//             for(int s=kk; s<dp.length-kk; ++s){
+//                 dp[s][kk] = (dp[s-1][kk-1] + dp[s+1][kk-1])%MOD;
+//             }
+//         }
+        
+//         return dp[k][k];
+//     }
+// }
 
 
 // // DP - memo
