@@ -1,25 +1,47 @@
 class Solution {
-    
-    Integer[][] memo;
-    int end;
-    int MOD = 1_000_000_007;
-    
     public int numberOfWays(int startPos, int endPos, int k) {
-        memo = new Integer[2*k + 2][k+1];
-        end = k + Math.abs(startPos - endPos);
-        return help(k, k);
-    }
-    
-    int help(int s, int k){
-        if(k==0) return s==end ? 1 : 0;
-        if(Math.abs(s-end) > k) return 0; // TLE
+        int[][] dp = new int[2*k + 2][k+1];
+        int MOD = 1_000_000_007;
+        int end = k + Math.abs(startPos - endPos);
         
-        if(memo[s][k] == null)
-            memo[s][k] = (help(s+1, k-1) + help(s-1, k-1))%MOD;
+        if(end >= dp.length)
+            return 0; // Runtime Error #2
+        dp[end][0] = 1;
         
-        return memo[s][k];
+        for(int kk=1; kk<=k; ++kk){
+            for(int s=kk; s<dp.length-kk; ++s){
+                dp[s][kk] = (dp[s-1][kk-1] + dp[s+1][kk-1])%MOD;
+            }
+        }
+        
+        return dp[k][k];
     }
 }
+
+
+// // DP - memo
+//
+// class Solution {    
+//     Integer[][] memo;
+//     int end;
+//     int MOD = 1_000_000_007;
+    
+//     public int numberOfWays(int startPos, int endPos, int k) {
+//         memo = new Integer[2*k + 2][k+1];
+//         end = k + Math.abs(startPos - endPos);
+//         return help(k, k);
+//     }
+    
+//     int help(int s, int k){
+//         if(k==0) return s==end ? 1 : 0;
+//         if(Math.abs(s-end) > k) return 0; // TLE
+        
+//         if(memo[s][k] == null)
+//             memo[s][k] = (help(s+1, k-1) + help(s-1, k-1))%MOD;
+        
+//         return memo[s][k];
+//     }
+// }
 
 
 
