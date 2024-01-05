@@ -1,21 +1,122 @@
-// binary search built in method
-// 
+// using segment tree
+//
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int len = 0;
-        for (int n : nums) {
-            if (len == 0 || nums[len - 1] < n)
-                nums[len++] = n;
-            else {
-                int insertionPoint = Arrays.binarySearch(nums, 0, len, n);
-                if (insertionPoint < 0)
-                    insertionPoint = -(insertionPoint + 1);
-                nums[insertionPoint] = n;
-            }
+        int n = nums.length;
+        int mx = -100000;
+        int mn = 100000;
+        for(int x: nums){
+            mx = Math.max(x, mx);
+            mn = Math.min(x, mn);
         }
-        return len;
+        
+        mn *= -1;
+        int ans = 0;
+        int[] dp = new int[mn + mx + 1];
+        SegmentTree seg = new SegmentTree(dp);
+        
+        for(int x: nums){
+            // int res = seg.query(0, Math.max(x+mn-1, 0));
+            int res = seg.query(0, x+mn-1);
+            if(dp[x+mn] < res + 1){
+                dp[x+mn] = res + 1;
+                seg.update(x+mn, res + 1);
+            }
+            ans = Math.max(ans, dp[x+mn]);
+        }
+        
+        return ans;
     }
 }
+
+class SegmentTree {
+    int[] tree;
+    int n;
+
+    public SegmentTree(int[] nums) {
+        n = nums.length;
+        int height = (int) (Math.ceil(Math.log(n) / Math.log(2)));
+        int mxSize = 2 * (int) Math.pow(2, height) - 1;
+        tree = new int[mxSize];
+        buildTree(nums, 0, 0, n - 1);
+    }
+    // or we can use 4*n as size
+    // tree = new int[4 * n];
+
+    private void buildTree(int[] nums, int index, int start, int end) {
+        if (start == end) {
+            tree[index] = nums[start];
+            return;
+        }
+
+        int mid = start + (end - start) / 2;
+        buildTree(nums, 2 * index + 1, start, mid);
+        buildTree(nums, 2 * index + 2, mid + 1, end);
+        tree[index] = Math.max(tree[2 * index + 1], tree[2 * index + 2]);
+    }
+
+    public int query(int left, int right) {
+        if(right < left) return 0;
+        return queryHelper(0, 0, n - 1, left, right);
+    }
+
+    private int queryHelper(int index, int start, int end, int left, int right) {
+        if (start > right || end < left) {
+            return Integer.MIN_VALUE; // Out of range
+        }
+
+        if (start >= left && end <= right) {
+            return tree[index]; // Current segment is completely within the range
+        }
+
+        int mid = start + (end - start) / 2;
+        int leftMax = queryHelper(2 * index + 1, start, mid, left, right);
+        int rightMax = queryHelper(2 * index + 2, mid + 1, end, left, right);
+
+        return Math.max(leftMax, rightMax);
+    }
+
+    public void update(int index, int val) {
+        updateHelper(0, 0, n - 1, index, val);
+    }
+
+    private void updateHelper(int index, int start, int end, int idx, int val) {
+        if (start == end) {
+            tree[index] = val;
+            return;
+        }
+
+        int mid = start + (end - start) / 2;
+        if (idx <= mid) {
+            updateHelper(2 * index + 1, start, mid, idx, val);
+        } else {
+            updateHelper(2 * index + 2, mid + 1, end, idx, val);
+        }
+
+        tree[index] = Math.max(tree[2 * index + 1], tree[2 * index + 2]);
+    }
+}
+
+
+
+// // binary search built in method
+// // 
+// class Solution {
+//     public int lengthOfLIS(int[] nums) {
+//         int len = 0;
+//         for (int n : nums) {
+//             if (len == 0 || nums[len - 1] < n)
+//                 nums[len++] = n;
+//             else {
+//                 int insertionPoint = Arrays.binarySearch(nums, 0, len, n);
+//                 if (insertionPoint < 0)
+//                     insertionPoint = -(insertionPoint + 1);
+//                 nums[insertionPoint] = n;
+//             }
+//         }
+//         return len;
+//     }
+// }
 
 
 
