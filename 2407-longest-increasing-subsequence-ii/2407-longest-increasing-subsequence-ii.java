@@ -27,9 +27,13 @@ class SegmentTree {
 
     public SegmentTree(int[] nums) {
         n = nums.length;
-        tree = new int[4 * n];
+        int height = (int) (Math.ceil(Math.log(n) / Math.log(2)));
+        int mxSize = 2 * (int) Math.pow(2, height) - 1;
+        tree = new int[mxSize];
         buildTree(nums, 0, 0, n - 1);
     }
+    // or we can use 4*n as size
+    // tree = new int[4 * n];
 
     private void buildTree(int[] nums, int index, int start, int end) {
         if (start == end) {
@@ -85,8 +89,26 @@ class SegmentTree {
 }
 
 
+// // TLE
+//
+// class Solution {
+//     public int lengthOfLIS(int[] nums, int k) {
+//         int n=nums.length, res=1;
+//         int[] dp=new int[n];
+//         dp[n-1]=1;
+//         for(int i=n-2; i>=0; i--){
+//             int ans=1;
+//             for(int j=i+1; j<n; j++)
+//                 if(nums[i]<nums[j] && nums[j]<=nums[i]+k) ans=Math.max(ans, 1+dp[j]);
+//             dp[i]=ans;
+//             res=Math.max(res, ans);
+//         }
+//         return res;
+//     }
+// }
 
-// // first attempt - wont work
+
+// // first attempt - wont work - it's wrong approch
 //
 // class Solution {
 //     public int lengthOfLIS(int[] nums, int k) {
