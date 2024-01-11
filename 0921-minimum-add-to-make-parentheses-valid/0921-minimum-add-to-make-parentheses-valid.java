@@ -1,3 +1,7 @@
+// // O(n)
+// // O(1)
+//
+
 class Solution {
     public int minAddToMakeValid(String s) {
         int stk = 0;
@@ -13,7 +17,9 @@ class Solution {
 
 
 
-
+// // O(n)
+// // O(n)
+//
 // class Solution {
 //     public int minAddToMakeValid(String s) {
 //         Stack<Character> stk = new Stack<>();
