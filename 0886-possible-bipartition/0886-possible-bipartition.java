@@ -9,9 +9,7 @@ class Solution {
         
         int[] map = new int[n+1];
         for(int i=1; i<n+1; ++i){
-            if(map[i]==0){
-                if(!dfs(i, 1, map, adj)) return false;
-            }
+            if(map[i]==0 && !dfs(i, 1, map, adj)) return false;
         }
         return true;
     }
