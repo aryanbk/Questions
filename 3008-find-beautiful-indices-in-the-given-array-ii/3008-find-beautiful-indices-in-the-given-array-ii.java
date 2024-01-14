@@ -4,31 +4,27 @@ class Solution {
         List<Integer> bb = strStr(s, b);
         List<Integer> ans = new ArrayList<>();
         
-        System.out.println(aa+" "+bb);
-        if(bb.size()==0) return ans;
         for (var x : aa) {
-            int idx = bs(bb, x, k);
-            if (Math.abs(bb.get(idx) - x) <= k)
-                ans.add(x);
+            if (bs(bb, x, k)) ans.add(x);
         }
 
         return ans;
     }
 
-    int bs(List<Integer> arr, int x, int k) {
+    boolean bs(List<Integer> arr, int x, int k) {
         int lo = 0;
         int hi = arr.size() - 1;
         int mid = 0;
         while (lo <= hi) {
             mid = lo + (hi - lo) / 2;
             if(Math.abs(arr.get(mid) - x) <= k)
-                break;
+                return true;
             else if (arr.get(mid) < x)
                 lo = mid + 1;
             else
                 hi = mid - 1;
         }
-        return mid;
+        return false;
     }
 
     public List<Integer> strStr(String hay, String needle) {
