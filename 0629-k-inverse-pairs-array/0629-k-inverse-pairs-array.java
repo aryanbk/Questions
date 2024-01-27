@@ -1,3 +1,5 @@
+// // O(n * k)
+
 class Solution {
     public int kInversePairs(int n, int k) {
         int[][] dp = new int[n+1][k+1];
@@ -15,21 +17,14 @@ class Solution {
         }
         
         return dp[n][k];
-        
-        
-        // if(k<0) return 0;
-        // if(n==0) return k==0 ? 1 : 0;
-        // if(memo[n][k] != null) return memo[n][k];
-        // memo[n][k] = 0;
-        // for(int i=0; i<n; ++i)
-        //     memo[n][k] = (memo[n][k] + kInversePairs(n-1, k-i)) % MOD;
-        // return memo[n][k];
     }
 }
 
 
 
-
+// // TLE
+// // O(n * k * n)
+//
 // class Solution {
 //     Integer[][] memo = new Integer[1001][1001];
 //     int MOD = 1_000_000_007;
