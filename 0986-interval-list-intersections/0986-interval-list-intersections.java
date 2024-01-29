@@ -5,7 +5,7 @@ class Solution {
         
         int n1 = first.length;
         int n2 = sec.length;
-        if(n1==0 || n2==0) return new int[0][0];
+        if(n1==0 || n2==0) return new int[0][0]; // IMP
 
         int i=0;
         int j=0;
@@ -15,10 +15,10 @@ class Solution {
             int start = Math.max(first[i][0], sec[j][0]);
             int end = Math.min(first[i][1], sec[j][1]);
             
-            if(start<=end){
+            if(start<=end){ // IMP
                 list.add(new int[]{start, end});
             }
-            if(first[i][1] < sec[j][1]) ++i;
+            if(first[i][1] < sec[j][1]) ++i; // IMP
             else ++j;
         }
         
