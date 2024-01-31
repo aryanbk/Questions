@@ -4,11 +4,7 @@ class Solution {
         String[] str = new String[n];
         for(int i=0; i<n; ++i) str[i] = Integer.toString(nums[i]);
         
-        Arrays.sort(str, (a, b) -> {
-            String aa = a+b;
-            String bb = b+a;
-            return bb.compareTo(aa);
-        });
+        Arrays.sort(str, (a, b) -> (b+a).compareTo(a+b));
         
         StringBuilder sb = new StringBuilder();
         for(String s: str) sb.append(s);
@@ -22,7 +18,8 @@ class Solution {
 
 
 
-
+// // WA
+//
 // class Solution {
 //     public String largestNumber(int[] nums) {
 //         int n = nums.length;
