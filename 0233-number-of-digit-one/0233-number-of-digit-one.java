@@ -17,7 +17,6 @@ class Solution {
             int newTot = tot + (x==1 ? 1 : 0);
             ans += dp(i+1, newAllow, newTot, n);
         }
-        // return ans + (limit != 0 ? 1 : 0);
         cache[i][allow][tot] = ans;
         return ans;
     }
