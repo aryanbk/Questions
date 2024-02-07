@@ -9,9 +9,7 @@ class Solution {
         if(i==n.length()) return 1;
         if(cache[i][allow][zero] != null) return cache[i][allow][zero];
         
-        
         int ans = zero==1 ? dp(i+1, 1, 1, digits, n) : 0;
-        
         int end = allow==1 ? 9 : n.charAt(i)-'0';
         
         for(int x=0; x<digits.length; ++x){
@@ -19,6 +17,7 @@ class Solution {
             if(cur <= end)
             ans += dp(i+1, (allow==1 || cur<end) ? 1 : 0, 0, digits, n);
         }
+        
         cache[i][allow][zero] = ans;
         return ans;
     }
