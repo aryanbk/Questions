@@ -6,10 +6,10 @@ class Solution {
             ++freq[s.charAt(i)][0];
         }
         
-        Arrays.sort(freq, (a, b) -> a[0]-b[0]);
+        Arrays.sort(freq, (a, b) -> b[0]-a[0]);
         
         StringBuilder sb = new StringBuilder();
-        for(int i=freq.length-1; i>=0 && freq[i][0]!=0; --i){
+        for(int i=0; i<freq.length && freq[i][0]!=0; ++i){
             String temp = String.valueOf((char)freq[i][1]).repeat(freq[i][0]);
             sb.append(temp);
         }
