@@ -6,7 +6,6 @@ class Solution {
         int flip = 0;
         
         for(int i=0; i<n; ++i){
-            // System.out.println(i+" "+start+" "+end+" "+flip);
             if((start<=i && i<=end && nums[i]==1)){
                 ++flip;
                 start = end+1;
@@ -26,10 +25,8 @@ class Solution {
                 end = i+k-1;
                 if(end >= n) return -1;
             }
-            // System.out.println(i+" "+start+" "+end+" "+flip);
         }
         
-        // return end >=n  && start>=n? -1 : flip;
         return flip;
     }
 }
