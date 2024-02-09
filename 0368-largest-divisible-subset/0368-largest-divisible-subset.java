@@ -37,10 +37,7 @@ class Solution {
             endIdx = map[endIdx];
             maxLen--;
         }
-        
-        Collections.reverse(listLIS);
-        System.out.println(listLIS);
-        
+                
         return listLIS.size(); // Return the length of LIS
     }
 }
@@ -87,9 +84,6 @@ class Solution {
 //             endIdx = map[endIdx];
 //             maxLen--;
 //         }
-        
-//         Collections.reverse(listLIS);
-//         System.out.println(listLIS);
         
 //         return listLIS.size(); // Return the length of LIS
 //     }
