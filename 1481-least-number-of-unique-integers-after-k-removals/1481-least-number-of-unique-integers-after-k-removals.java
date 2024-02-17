@@ -15,7 +15,7 @@ class Solution {
                 freq.put(val, new ArrayList<>());
             freq.get(val).add(key);
         }
-        // System.out.println(mx+" "+unique+" "+freq);
+        
         for(int i=1; i<=mx && k>0; ++i){
             if(!freq.containsKey(i)) continue;
             int n = freq.get(i).size();
