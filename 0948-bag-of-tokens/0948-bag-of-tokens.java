@@ -3,22 +3,22 @@ class Solution {
         Arrays.sort(tokens);
         int i = 0;
         int j = tokens.length-1;
-        int score = 0;
-        int ans = 0;
+        int curScore = 0;
+        int mxScore = 0;
         
         while(i<=j){
             if(tokens[i] <= power){
                 power -= tokens[i++];
-                ++score;
-                ans = score;
+                ++curScore;
+                mxScore = curScore;
             }
-            else if(score > 0) {
+            else if(curScore > 0) {
                 power += tokens[j--];
-                --score;
+                --curScore;
             }
-            else return ans;
+            else return mxScore;
         }
         
-        return ans;
+        return mxScore;
     }
 }
