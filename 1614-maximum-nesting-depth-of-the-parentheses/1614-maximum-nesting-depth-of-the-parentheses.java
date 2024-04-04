@@ -4,7 +4,7 @@ class Solution {
         int cur = 0;
         for(int i=0; i<s.length(); ++i){
             if(s.charAt(i)=='(') ans = Math.max(ans, ++cur);
-            if(s.charAt(i)==')') --cur;
+            else if(s.charAt(i)==')') --cur;
         }
         return ans;
     }
