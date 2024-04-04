@@ -3,13 +3,27 @@ class Solution {
         int ans = 0;
         int cur = 0;
         for(int i=0; i<s.length(); ++i){
-            if(s.charAt(i)=='(') ++cur;
+            if(s.charAt(i)=='(') ans = Math.max(ans, ++cur);
             if(s.charAt(i)==')') --cur;
-            ans = Math.max(ans, cur);
         }
         return ans;
     }
 }
+
+
+
+// class Solution {
+//     public int maxDepth(String s) {
+//         int ans = 0;
+//         int cur = 0;
+//         for(int i=0; i<s.length(); ++i){
+//             if(s.charAt(i)=='(') ++cur;
+//             if(s.charAt(i)==')') --cur;
+//             ans = Math.max(ans, cur);
+//         }
+//         return ans;
+//     }
+// }
 
 
 // class Solution {
