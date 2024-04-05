@@ -2,7 +2,7 @@ class Solution {
     public String makeGood(String s) {
         Stack<Character> stk = new Stack<>();
         for(int i=0; i<s.length(); ++i){
-            if(!stk.isEmpty() && Math.abs(stk.peek() - s.charAt(i))==32)
+            if(!stk.isEmpty() && (stk.peek() ^ 32) == s.charAt(i))
                 stk.pop();
             else
                 stk.push(s.charAt(i));
