@@ -1,51 +1,78 @@
 class MyStack {
-    Queue<Integer> fst;
-    Queue<Integer> sec;
-    
-    public MyStack() {
-        fst = new LinkedList<>();
-        sec = new LinkedList<>();
-    }
-    
+
+    private Queue<Integer> queue = new LinkedList<>();
+
     public void push(int x) {
-        if(fst.isEmpty()) sec.offer(x);
-        else fst.offer(x);
+        queue.add(x);
+        for(int i = 1;i<queue.size();i++) {
+            queue.add(queue.remove());
+        }
     }
-    
+
     public int pop() {
-        if(fst.isEmpty()){
-            while(sec.size()>1)
-                fst.offer(sec.poll());
-            return sec.poll();
-        }
-        else{
-            while(fst.size()>1)
-                sec.offer(fst.poll());
-            return fst.poll();
-        }
+        return queue.remove();
     }
-    
+
     public int top() {
-        if(fst.isEmpty()){
-            while(sec.size()>1)
-                fst.offer(sec.poll());
-            int ans = sec.poll();
-            fst.offer(ans);
-            return ans;
-        }
-        else{
-            while(fst.size()>1)
-                sec.offer(fst.poll());
-            int ans = fst.poll();
-            sec.offer(ans);
-            return ans;
-        }
+        return queue.peek();
     }
-    
+
     public boolean empty() {
-        return fst.isEmpty() && sec.isEmpty();
+        return queue.isEmpty();  
     }
 }
+
+
+
+
+// class MyStack {
+//     Queue<Integer> fst;
+//     Queue<Integer> sec;
+    
+//     public MyStack() {
+//         fst = new LinkedList<>();
+//         sec = new LinkedList<>();
+//     }
+    
+//     public void push(int x) {
+//         if(fst.isEmpty()) sec.offer(x);
+//         else fst.offer(x);
+//     }
+    
+//     public int pop() {
+//         if(fst.isEmpty()){
+//             while(sec.size()>1)
+//                 fst.offer(sec.poll());
+//             return sec.poll();
+//         }
+//         else{
+//             while(fst.size()>1)
+//                 sec.offer(fst.poll());
+//             return fst.poll();
+//         }
+//     }
+    
+//     public int top() {
+//         if(fst.isEmpty()){
+//             while(sec.size()>1)
+//                 fst.offer(sec.poll());
+//             int ans = sec.poll();
+//             fst.offer(ans);
+//             return ans;
+//         }
+//         else{
+//             while(fst.size()>1)
+//                 sec.offer(fst.poll());
+//             int ans = fst.poll();
+//             sec.offer(ans);
+//             return ans;
+//         }
+//     }
+    
+//     public boolean empty() {
+//         return fst.isEmpty() && sec.isEmpty();
+//     }
+// }
 
 /**
  * Your MyStack object will be instantiated and called as such:
