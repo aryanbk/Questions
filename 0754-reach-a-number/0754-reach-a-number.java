@@ -12,14 +12,30 @@ class Solution {
 
 
 
+// class Solution {
+//     public int reachNumber(int target) {
+//         target = Math.abs(target);
+//         int step = 0;
+//         int sum = 0;
+//         while (sum < target) {
+//             step++;
+//             sum += step;
+//         }
+//         while ((sum - target) % 2 != 0) {
+//             step++;
+//             sum += step;
+//         }
+//         return step;
+//     }
+// }
 
 
 
 
 
 
-
-
+// // works but TLE
+//
 // class Solution {
 //     public int reachNumber(int target) {
 //         int t = Math.abs(target);
@@ -69,7 +85,8 @@ class Solution {
 
 
 
-
+// // works but TLE
+//
 // class Solution {
 //     public int reachNumber(int target) {
 //         int t = Math.abs(target);
