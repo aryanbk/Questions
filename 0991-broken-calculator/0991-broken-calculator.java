@@ -1,9 +1,29 @@
 class Solution {
     public int brokenCalc(int st, int trgt) {
-        if(st >= trgt) return st-trgt;
-        return trgt%2==0 ? brokenCalc(st, trgt/2)+1 : brokenCalc(st, (trgt+1)/2)+2;
+        int ans = 0;
+        while(st < trgt){
+            if(trgt%2==1){
+                ++trgt;
+                ++ans;
+            }
+            trgt/=2;
+            ++ans;
+        }
+        return ans + st-trgt;
     }
 }
+
+
+
+
+
+
+// class Solution {
+//     public int brokenCalc(int st, int trgt) {
+//         if(st >= trgt) return st-trgt;
+//         return trgt%2==0 ? brokenCalc(st, trgt/2)+1 : brokenCalc(st, (trgt+1)/2)+2;
+//     }
+// }
 
 
 
