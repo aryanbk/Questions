@@ -6,11 +6,8 @@ class Solution {
         Queue<String> q = new LinkedList<>();
         q.offer("0000");
         
-        int ans = 0;
-        
-        for(; !q.isEmpty(); ++ans){
+        for(int ans=0; !q.isEmpty(); ++ans){ // ans == steps
             int l = q.size();
-            // System.out.println(q);
             
             for(int i=0; i<l; ++i){
                 String cur = q.poll();
@@ -21,20 +18,18 @@ class Solution {
                 vis.add(cur);
                 
                 for(int j=0; j<4; ++j){
-                    // int dig = ch[j]-'0';
                     char prev = ch[j]=='0' ? '9' : (char)(ch[j]-1);
                     char nx = ch[j]=='9' ? '0' : (char)(ch[j]+1);
+                    
                     ch[j] = prev;
-                    // if(!vis.contains(String.valueOf(ch)))
-                        q.offer(String.valueOf(ch));
+                    q.offer(String.valueOf(ch));
                     ch[j] = nx;
-                    // if(!vis.contains(String.valueOf(ch)))
-                        q.offer(String.valueOf(ch));
+                    q.offer(String.valueOf(ch));
+                    
                     ch[j] = cur.charAt(j);
                 }
             }
         }
-        
         return -1;
     }
 }
