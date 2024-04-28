@@ -1,3 +1,3 @@
 # Questions Practice
 
-Questions I solved on LeetCode
+Problems I have solved on LeetCode
