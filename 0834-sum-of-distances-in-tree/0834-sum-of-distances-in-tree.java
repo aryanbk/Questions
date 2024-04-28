@@ -1,30 +1,27 @@
-class Solution {
-    int[][] dp;
-    List<Integer>[] adj;
+// 2 DFSs
+//
+class Solution{
     int n;
+    List<Integer>[] adj;
+    int[][] dp;
     int[] ans;
+    
     public int[] sumOfDistancesInTree(int n, int[][] edges) {
         this.n = n;
         dp = new int[n][2];
-        adj = new ArrayList[n];
         ans = new int[n];
         
+        adj = new ArrayList[n];
         for(int i=0; i<n; ++i) adj[i] = new ArrayList<>();
-        
         for(int[] e: edges){
             adj[e[0]].add(e[1]);
             adj[e[1]].add(e[0]);
         }
         
-        // dfs(0, -1, 0);
-        // return dfs(0,-1,0);
         dfs(0, -1, 0);
         ans[0] = dp[0][1];
-        
-        // for(int[] d: dp)
-            // System.out.println(d[0]+" "+d[1]);
-        
         dfs2(0, -1, 0);
+        
         return ans;
     }
     
@@ -44,15 +41,14 @@ class Solution {
     
     void dfs2(int i, int par, int lvl){
         if(par != -1){
+            // Sum of Distances of cur wrt cur
             int curcur = dp[i][1] - (lvl*dp[i][0]);
+            // Sum of Distances of cur wrt parent
             int curpar = curcur + dp[i][0];
+            // Sum of Distances of other that cur wrt par
             int otherpar = ans[par] - curpar;
-            // int x = dp[i][1] - ((lvl-1)*dp[i][0]);
-            int[] up = new int[]{dp[par][0]-dp[i][0], otherpar};
-            // System.out.println(up[1]+" "+i);
-            // updp[i] = updp[par] + (up[0]+1)*lvl + 
-            // ans[i] = dp[i][1] - (dp[i][0]*lvl) + (up[0]*lvl) + up[1];
-            ans[i] = curcur + ((n-dp[i][0])) + up[1];
+            
+            ans[i] = curcur + (n-dp[i][0]) + otherpar;
         }
         
         for(int nbr: adj[i]){
