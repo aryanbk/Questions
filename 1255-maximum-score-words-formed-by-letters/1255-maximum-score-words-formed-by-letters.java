@@ -8,7 +8,7 @@ class Solution {
     
     int solve(int i, String[] words, int[] score, int[] freq){
         if(i == words.length) return 0;
-        // if(!valid(words[i])) return solve(i+1, words, score);
+        
         int[] freq2 = Arrays.copyOf(freq, 26);
         int curScore = 0;
         
@@ -21,11 +21,9 @@ class Solution {
             else return solve(i+1, words, score, freq);
         }
         
-        int left = solve(i+1, words, score, freq);
-        int right = solve(i+1, words, score, freq2) + curScore;
-        int ans = Math.max(left, right);
-        // System.out.println(Arrays.toString(freq2));
-        // System.out.println(i+" "+curScore+" "+ans+" "+left+" "+right);
-        return ans;
+        int notTake = solve(i+1, words, score, freq);
+        int take = solve(i+1, words, score, freq2) + curScore;
+        
+        return Math.max(notTake, take);
     }
 }
