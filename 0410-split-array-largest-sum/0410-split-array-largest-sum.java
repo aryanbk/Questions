@@ -39,3 +39,37 @@ class Solution {
         return ans;
     }
 }
+
+
+
+
+
+
+
+
+// class Solution {
+//     Integer[][] dp;
+//     public int splitArray(int[] nums, int k) {
+//         int ans = Integer.MAX_VALUE;
+//         dp = new Integer[nums.length+1][k+1];
+//         return solve(0, nums, k);
+//     }
+//     int solve(int i, int[] nums, int k){
+//         if(k==1){
+//             int ans = 0;
+//             for(int j=i; j<nums.length; ++j) ans += nums[j];
+//             dp[i][k] = ans;
+//             return ans;
+//         }
+//         if(dp[i][k] != null) return dp[i][k];
+//         int cur = 0;
+//         int ans = 1000000000;
+//         for(int j=i; j<=nums.length-k+1; ++j){
+//             cur += nums[j];
+//             int mxSum = Math.max(cur, solve(j+1, nums, k-1));
+//             ans = Math.min(ans, mxSum);
+//         }
+//         dp[i][k] = ans;
+//         return ans;
+//     }
+// }
