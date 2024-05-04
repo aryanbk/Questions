@@ -2,21 +2,39 @@ class Solution {
     public int numRescueBoats(int[] people, int limit) {
         Arrays.sort(people);
         int ans = 0;
-        int i=0;
-        int j = people.length-1;
         
-        while(i<=j){
-            if(people[i] + people[j] <= limit){
-                ++i; --j;
-            }
-            else
-                --j;
-            ++ans;
+        for(int i=0, j = people.length-1; i<=j; ++ans, --j){
+            if(people[i]+people[j] <= limit) ++i;
         }
         
         return ans;
     }
 }
+
+
+
+
+
+
+// class Solution {
+//     public int numRescueBoats(int[] people, int limit) {
+//         Arrays.sort(people);
+//         int ans = 0;
+//         int i=0;
+//         int j = people.length-1;
+        
+//         while(i<=j){
+//             if(people[i] + people[j] <= limit){
+//                 ++i; --j;
+//             }
+//             else
+//                 --j;
+//             ++ans;
+//         }
+        
+//         return ans;
+//     }
+// }
 
 
 
