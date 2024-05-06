@@ -4,13 +4,12 @@ class Solution {
         int[] aSuff = new int[n+1];
         for(int i=n-1; i>=0; --i)
             aSuff[i] = aSuff[i+1] + (s.charAt(i)=='a' ? 1 : 0);
-        int as = aSuff[0];
-        int bs = n - as;
         
-        if(as == n || as == 0) return 0;
+        int aTot = aSuff[0];
+        int bTot = n - aTot;
         
         int bPre = 0;
-        int ans = Math.min(as, bs);
+        int ans = Math.min(aTot, bTot);
         
         for(int i=0; i<n; ++i){
             bPre += s.charAt(i)=='b' ? 1 : 0;
