@@ -1,28 +1,23 @@
 class Solution {
     public double mincostToHireWorkers(int[] qua, int[] wg, int k) {
         int n = qua.length;
-        Double[][] rate = new Double[n][3];
+        double[][] rate = new double[n][2];
         
         for(int i=0; i<n; ++i)
-            rate[i] = new Double[]{(double)wg[i] / (double)qua[i], (double)qua[i], (double)wg[i]};
-        Arrays.sort(rate, (a, b) -> a[0]-b[0] > 0 ? 1 : a[0]-b[0]< 0 ? -1 : 0);
+            rate[i] = new double[]{wg[i]*1.0 / qua[i], qua[i]};
+        Arrays.sort(rate, (a, b) -> Double.compare(a[0], b[0]));
         
-        PriorityQueue<Double[]> pq = new PriorityQueue<>((a, b) -> (int)(b[1]-a[1]));
-        Double totQ = 0.0;
+        PriorityQueue<Double> pq = new PriorityQueue<>((a, b) -> Double.compare(b, a));
+        double totQua = 0.0;
         double ans = 1000000000;
+        
         for(var r: rate){
-            pq.offer(r);
-            totQ += r[1];
-            if(pq.size() > k){
-                Double[] polled = pq.poll();
-                totQ -= polled[1];
-            }
-            if(pq.size() == k){
-                ans = Math.min(ans, totQ*r[0]);
-            }
+            pq.offer(r[1]);
+            totQua += r[1];
+            
+            if(pq.size() > k) totQua -= pq.poll();
+            if(pq.size() == k) ans = Math.min(ans, totQua*r[0]);
         }
-        
-        
         
         return ans;
     }
