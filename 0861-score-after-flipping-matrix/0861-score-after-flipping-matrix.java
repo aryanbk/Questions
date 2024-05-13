@@ -12,22 +12,18 @@ class Solution {
         }
         
         for(int j=1; j<n; ++j){
-            int col = colFind(grid, r, c, j);
-            // System.out.println(col+" "+(m/2));
-            if(col < (m+1)/2)
+            int colVal = colFind(grid, r, c, j);
+            if(colVal < (m+1)/2)
                 c[j] = 1;
         }
         
         int ans = 0;
         for(int i=0; i<m; ++i){
-            ans += Integer.parseInt(rowFind(grid, r, c, i), 2);
-            // System.out.println(ans);
+            String rowVal = rowFind(grid, r, c, i);
+            ans += Integer.parseInt(rowVal, 2);
         }
         
-        // System.out.println(Arrays.toString(r)+" "+Arrays.toString(c));
         return ans;
-        
-        // for(int i)
     }
     
     int colFind(int[][] grid, int[] r, int[] c, int j){
