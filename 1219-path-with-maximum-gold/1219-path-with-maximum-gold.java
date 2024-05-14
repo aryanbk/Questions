@@ -23,9 +23,8 @@ class Solution {
         int temp = grid[i][j];
         grid[i][j] = 0;
         
-        for(int x=0; x<4; ++x){
+        for(int x=0; x<4; ++x)
             ans = Math.max(ans, bk(i+dir[x], j+dir[x+1], grid));
-        }
         
         grid[i][j] = temp;
         return ans + grid[i][j];
