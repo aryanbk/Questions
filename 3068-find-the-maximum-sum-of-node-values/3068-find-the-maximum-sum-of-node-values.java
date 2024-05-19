@@ -12,11 +12,10 @@ class Solution {
         Arrays.sort(diff);
         
         for(int i=n-1; i>0; i-=2){
-            if(diff[i] + diff[i-1] > 0)
-                ans += diff[i] + diff[i-1];
-            else
-                break;
+            if(diff[i] + diff[i-1] > 0) ans += diff[i] + diff[i-1];
+            else break;
         }
+        
         return ans;
     }
 }
