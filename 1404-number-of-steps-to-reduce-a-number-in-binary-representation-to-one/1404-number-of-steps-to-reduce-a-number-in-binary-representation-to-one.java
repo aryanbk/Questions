@@ -2,13 +2,14 @@ class Solution {
     public int numSteps(String s) {
         int carry = 0;
         int ans = 0;
-        for(int i=s.length()-1; i>0; --i, ++ans){
+        
+        for(int i=s.length()-1; i>0; --i){
             int num = s.charAt(i)-'0' + carry;
-            ans += num%2;
+            ans += num%2==0 ? 1 : 2;
             carry = num==0 ? 0 : 1;
         }
-        ans += carry==0 ? 0 : 1;
-        return ans;
+        
+        return ans + carry;
     }
 }
 
