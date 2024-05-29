@@ -15,9 +15,32 @@ class Solution {
 
 
 
+// // readable
+//
+// class Solution {
+//     public int numSteps(String s) {
+//         int carry = 0;
+//         int ans = 0;
+        
+//         for(int i=s.length()-1; i>0; --i){
+//             if(s.charAt(i)-'0' + carry ==1){
+//                 ans += 2;
+//                 carry = 1;
+//             }
+//             else
+//                 ans += 1;
+//         }
+        
+//         return ans + carry;
+//     }
+// }
 
 
 
+
+
+// // won't work
+//
 // class Solution {
 //     public int numSteps(String s) {
 //         int n = Integer.parseInt(s, 2);
