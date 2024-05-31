@@ -16,7 +16,8 @@ class Solution {
 }
 
 
-
+// // wont work (not in O(n) time complexity)
+//
 // class Solution {
 //     public int[] singleNumber(int[] nums) {
 //         int xor = 0;
