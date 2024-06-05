@@ -3,11 +3,6 @@ class Solution {
         int n = words.length;
         int[][] f = new int[n][26];
         
-        // for(int x=0; x<n; ++x){
-        //     for(int i=0; i<words[x].length(); ++i)
-        //         f[x][words[x].charAt(i)-'a']++;
-        // }
-        
         for(int i=0; i<words.length; ++i){
             for(int j=0; j<words[i].length(); ++j){
                 ++f[i][words[i].charAt(j)-'a'];
