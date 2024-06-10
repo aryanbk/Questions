@@ -1,3 +1,4 @@
+// counting sort
 class Solution {
     public int heightChecker(int[] heights) {
         int[] freq = new int[101];
@@ -5,6 +6,7 @@ class Solution {
         
         int cur = 0;
         int ans = 0;
+        
         for(int i=0; i<101; ++i){
             while(freq[i] > 0){
                 if(heights[cur] != i) ++ans;
@@ -18,7 +20,9 @@ class Solution {
 }
 
 
-
+// // by sorting array
+// // java stream api
+//
 // class Solution {
 //     public int heightChecker(int[] heights) {
 //         int[] sorted = heights.clone();
