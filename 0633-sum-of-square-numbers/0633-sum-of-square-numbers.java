@@ -1,7 +1,7 @@
 class Solution {
     public boolean judgeSquareSum(int c) {
         long i = 0;
-        long j = (long)Math.ceil(Math.sqrt(c));
+        long j = (long)Math.floor(Math.sqrt(c));
         
         while(i<=j){
             long sumt = (i*i) + (j*j);
