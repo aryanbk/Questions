@@ -1,7 +1,8 @@
 class Solution {
+    int[] mx;
     public int minDays(int[] bloom, int m, int k) {
         int n = bloom.length;
-        int[] mx = maxSlidingWindow(bloom, k);
+        mx = maxSlidingWindow(bloom, k);
         
         int lo = 1;
         int hi = 1000000000;
@@ -9,7 +10,7 @@ class Solution {
         
         while(lo <= hi){
             int mid = lo + (hi - lo)/2;
-            if(valid(mx, mid, k, m)){
+            if(valid(mid, k, m)){
                 ans = mid;
                 hi = mid - 1;
             }
@@ -44,7 +45,7 @@ class Solution {
     
     
     
-    boolean valid(int[] mx, int mid, int k, int m){
+    boolean valid(int mid, int k, int m){
         for(int i=0; i<mx.length && m>0;){
             if(mx[i] <= mid){
                 --m;
