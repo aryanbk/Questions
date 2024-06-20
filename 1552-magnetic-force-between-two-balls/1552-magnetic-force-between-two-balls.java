@@ -3,18 +3,15 @@ class Solution {
         Arrays.sort(pos);
         int lo = 1;
         int hi = pos[pos.length-1] - pos[0];
-        int ans = -1;
         
         while(lo <= hi){
             int mid = lo + (hi - lo)/2;
-            if(valid(pos, m, mid)){
-                ans = mid;
+            if(valid(pos, m, mid))
                 lo = mid + 1;
-            }
             else
                 hi = mid - 1;
         }
-        return ans;
+        return hi;
     }
     
     boolean valid(int[] pos, int m, int d){
