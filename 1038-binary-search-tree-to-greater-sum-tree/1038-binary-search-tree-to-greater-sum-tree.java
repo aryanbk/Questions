@@ -17,11 +17,14 @@ class Solution {
     int sumt = 0;
     public TreeNode bstToGst(TreeNode root) {
         if(root == null) return null;
+        
         bstToGst(root.right);
-        int temp = root.val;
-        root.val += sumt;
-        sumt += temp;
+        
+        sumt += root.val;
+        root.val = sumt;
+        
         bstToGst(root.left);
+        
         return root;
     }
 }
