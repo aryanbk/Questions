@@ -1,20 +1,27 @@
 class Solution {
     public int maxNumEdgesToRemove(int n, int[][] edges) {
-        Arrays.sort(edges, (a, b) -> b[0]-a[0]);
         DSU alice = new DSU(n);
         DSU bob = new DSU(n);
         int add = 0;
         
+        // in first iteration only type 3 edges
         for(int[] e: edges){
             int type = e[0];
             int a = e[1];
             int b = e[2];
             
-            
             if(type == 3){
                 if(alice.union(a, b) | bob.union(a, b)) ++add;
             }
-            else if(type == 1){
+        }
+
+        // in second iteration type 1 & type 2 edges
+        for(int[] e: edges){
+            int type = e[0];
+            int a = e[1];
+            int b = e[2];
+            
+            if(type == 1){
                 if(alice.union(a, b)) ++add;
             }
             else{
