@@ -2,23 +2,19 @@ class Solution {
     int ans = 0;
     public int maximumGain(String s, int x, int y) {
         var sb = new StringBuilder(s);
-        // return x>y ? solve(sb, x, y) : solve(sb.reverse(), x, y);
-        // char f = x>y ? 'a' : 'b';
-        // char s = x>y ? 'b' : 'a';
         if(x>y){
-            sb = solve(sb, x, 'a', 'b');
-            solve(sb, y, 'b', 'a');
+            sb = solve(sb, x, 'a', 'b'); // in first iteration check for "ab"
+            sb = solve(sb, y, 'b', 'a'); // then "ba" (low value)
         }
         else{
-            sb = solve(sb, y, 'b', 'a');
-            solve(sb, x, 'a', 'b');
+            sb = solve(sb, y, 'b', 'a'); // high value
+            sb = solve(sb, x, 'a', 'b'); // low value
         }
         
         return ans;
     }
     
     StringBuilder solve(StringBuilder sb, int val, char f, char s){
-        // System.out.println(f+""+s);
         var sb2 = new StringBuilder();
         for(int i=0; i<sb.length(); ++i){
             char cur = sb.charAt(i);
@@ -28,9 +24,8 @@ class Solution {
             }
             else
                 sb2.append(cur);
-            // System.out.println(sb2+" "+ans);
         }
-        return sb2;
+        return sb2; // return resultant stack / sb
     }
 }
 
