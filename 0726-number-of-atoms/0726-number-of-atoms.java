@@ -23,7 +23,7 @@ class Solution {
 //             char c = s.charAt(i);
             
 //         }
-        Map<String, Integer> map = solve(0, n-1, fml);
+        Map<String, Integer> map = solve(0, fml);
         var sb = new StringBuilder();
         for(String key: map.keySet()){
             int val = map.get(key);
@@ -35,38 +35,57 @@ class Solution {
         
     }
     
-    Map<String, Integer> solve(int i, int j, String fml){
+    Map<String, Integer> solve(int i, String fml){
+        // System.out.println(i);
         // var map = new TreeMap<String, Integer>(Collections.reverseOrder());
         var map = new TreeMap<String, Integer>();
         
-        while(i<=j){
+        while(i<n){
             String cur;
             int num = 1;
             int newI = i+1;
 
-
+            
             if(fml.charAt(i) == '('){
-                Map<String, Integer> res = solve(i+1, bkt[i]-1, fml);
+                Map<String, Integer> res = solve(i+1, fml);
+                // System.out.println("res===="+res+" map===="+map);
                 // System.out.println(res);
-                int k = bkt[i]+1;
-                int mlt = 1;
-                newI = k;
+//                 int a = bkt[i]+1;
+//                 int mlt = 1;
+//                 newI = a;
                 
-                if(k<=j && help(fml.charAt(k)) == 0){
-                    for(; k<=j && help(fml.charAt(k))==0; ++k);
-                    mlt = Integer.parseInt(fml.substring(bkt[i]+1, k));
-                    newI = k;
-                }
+//                 if(a<=j && help(fml.charAt(a)) == 0){
+//                     for(; a<=j && help(fml.charAt(a))==0; ++a);
+//                     mlt = Integer.parseInt(fml.substring(bkt[i]+1, a));
+//                     newI = a;
+//                 }
                 
                 // System.out.println(i+" "+bkt[i]+" "+mlt);
-                for(String key: res.keySet()){
-                    int prev = map.getOrDefault(key, 0);
-                    map.put(key, prev + (res.get(key)*mlt));
+                for(String key: res.keySet())
+                    map.put(key, map.getOrDefault(key, 0) + res.get(key));
+                int a = i+1;
+                int open = 1;
+                for(; a<n && open!=0; ++a){
+                    if(fml.charAt(a)=='(') ++open;
+                    if(fml.charAt(a)==')') --open;
                 }
+                // System.out.println(a);
+                // ++a;
+                for(; a<n && help(fml.charAt(a))==0; ++a);
+                newI = a;
+                // System.out.println(i+" "+a+" "+map);
             }
-            else if(fml.charAt(i) == ')') return map;
+            else if(fml.charAt(i) == ')'){
+                int a = i+1;
+                for(; a<n && help(fml.charAt(a))==0; ++a);
+                int mlt = a==i+1 ? 1 : Integer.parseInt(fml.substring(i+1, a));
+                for(String key: map.keySet())
+                    map.put(key, map.get(key)*mlt);
+                // System.out.println(i+" "+map+" "+mlt);
+                return map;
+            }
             else{
-                if(i==j) cur = fml.substring(i, i+1);
+                if(i==n-1) cur = fml.substring(i, i+1);
                 else {
                     int next = help(fml.charAt(i+1));
                     if(next != -1){ // next is not lower
@@ -75,7 +94,7 @@ class Solution {
                         // cur = Character.toString(fml.charAt(i));
                         if(next == 0){
                             int a = i+1;
-                            for(; a<=j && help(fml.charAt(a))==0; ++a);
+                            for(; a<n && help(fml.charAt(a))==0; ++a);
                             num = Integer.parseInt(fml.substring(i+1, a));
                             newI = a;
                         }
@@ -84,9 +103,9 @@ class Solution {
                         // Two char elements
                         cur = fml.substring(i, i+2);
                         newI = i+2;
-                        if(i+2<=j && help(fml.charAt(i+2)) == 0){
+                        if(i+2<=n && help(fml.charAt(i+2)) == 0){
                             int a = i+2;
-                            for(; a<=j && help(fml.charAt(a))==0; ++a);
+                            for(; a<n && help(fml.charAt(a))==0; ++a);
                             num = Integer.parseInt(fml.substring(i+2, a));
                             newI = a;
                         }
