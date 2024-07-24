@@ -2,8 +2,10 @@ class Solution {
     public int[] sortJumbled(int[] mapping, int[] nums) {
         var idx = new Integer[nums.length];
         Arrays.setAll(idx, (i)->i);
+        var map = new HashMap<Integer, Integer>();
+        for(var n: nums) map.putIfAbsent(n, find(n, mapping));
         // sort indexed based on value after mapping
-        Arrays.sort(idx, (a, b) -> find(nums[a], mapping) - find(nums[b], mapping));
+        Arrays.sort(idx, (a, b) -> map.get(nums[a]) - map.get(nums[b]));
         var ans = new int[nums.length];
         for(int i=0; i<nums.length; ++i) ans[i] = nums[idx[i]];
         return ans;
