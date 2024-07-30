@@ -3,17 +3,17 @@ class Solution {
         int n = s.length();
         int[] aSuff = new int[n+1];
         for(int i=n-1; i>=0; --i)
-            aSuff[i] = aSuff[i+1] + (s.charAt(i)=='a' ? 1 : 0);
+            aSuff[i] = aSuff[i+1] + (s.charAt(i)=='a' ? 1 : 0); // no of 'a' after index i
         
-        int aTot = aSuff[0];
-        int bTot = n - aTot;
+        int aTotal = aSuff[0];
+        int bTotal = n - aTotal;
         
         int bPre = 0;
-        int ans = Math.min(aTot, bTot);
+        int ans = Math.min(aTotal, bTotal);
         
         for(int i=0; i<n; ++i){
             bPre += s.charAt(i)=='b' ? 1 : 0;
-            ans = Math.min(ans, bPre + aSuff[i+1]);
+            ans = Math.min(ans, bPre + aSuff[i+1]); // remove 'b's in before i and 'a's after i
         }
         
         return ans;
