@@ -15,6 +15,8 @@ class Solution {
 }
 
 
+// wrong approch
+// treemap sorts by key value
 
 // class Solution {
 //     public String kthDistinct(String[] arr, int k) {
