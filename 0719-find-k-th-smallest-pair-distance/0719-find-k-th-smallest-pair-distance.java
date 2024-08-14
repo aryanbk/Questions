@@ -18,9 +18,12 @@ class Solution {
     
     int solve(int[] nums, int diff){
         int diffsPosition = 0;
-        for(int l=0, r=1; r<nums.length && l<r; ++r){
-            while(nums[r]-nums[l] > diff) ++l;
-            diffsPosition += r-l;
+        for(int l=0, r=1; r<nums.length && l<=r;){
+            if(nums[r]-nums[l] <= diff){
+                diffsPosition += r-l;
+                ++r;
+            }
+            else ++l;
         }
         return diffsPosition;
     }
