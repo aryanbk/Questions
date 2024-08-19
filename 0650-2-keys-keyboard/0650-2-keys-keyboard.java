@@ -1,24 +1,37 @@
 class Solution {
-    Integer[][] memo;
-    int n;
-    
     public int minSteps(int n) {
         if(n==1) return 0;
-        memo = new Integer[1000][1000];
-        this.n = n;
-        return solve(1, 1)+1;
-    }
-    
-    int solve(int cur, int clip){
-        if(cur==n) return 0;
-        if(cur>n || clip>n) return 10000000;
-        if(memo[cur][clip] != null) return memo[cur][clip];
-        memo[cur][clip] = Math.min(solve(cur+clip, clip), solve(cur+clip, cur+clip)+1)+1;
-        return memo[cur][clip];
+        for(int i=n-1; i>1; --i){
+            if(n%i==0) return minSteps(i) + n/i;
+        }
+        return n;
     }
 }
 
 
+
+// DFS - AC
+// class Solution {
+//     Integer[][] memo;
+//     int n;
+    
+//     public int minSteps(int n) {
+//         if(n==1) return 0;
+//         memo = new Integer[1000][1000];
+//         this.n = n;
+//         return solve(1, 1)+1;
+//     }
+    
+//     int solve(int cur, int clip){
+//         if(cur==n) return 0;
+//         if(cur>n || clip>n) return 10000000;
+//         if(memo[cur][clip] != null) return memo[cur][clip];
+//         memo[cur][clip] = Math.min(solve(cur+clip, clip), solve(cur+clip, cur+clip)+1)+1;
+//         return memo[cur][clip];
+//     }
+// }
+
+// BFS - WA
 // class Solution {
 //     public int minSteps(int n) {
 //         var q = new LinkedList<List<Integer>>();
