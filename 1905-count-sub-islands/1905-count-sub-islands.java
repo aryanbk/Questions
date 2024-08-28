@@ -12,8 +12,7 @@ class Solution {
         
         for(int i=0; i<m; ++i){
             for(int j=0; j<n; ++j){
-                boolean[] res = dfs(i, j, grid1, grid2);
-                // System.out.println(i+" "+j+" "+res[0]+" "+res[1]);
+                boolean[] res = dfs(i, j, grid1, grid2); // {isIsland, isSubsetOfGrid1}
                 ans += res[0] & res[1] ? 1 : 0;
             }
         }
