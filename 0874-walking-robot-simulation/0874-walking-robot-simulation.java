@@ -9,14 +9,8 @@ class Solution {
         int ans = 0;
         
         for(int c: cmd){
-            if(c == -1){
-                d+=1;
-                continue;
-            }
-            else if(c == -2){
-                d+=3;
-                continue;
-            }
+            if(c == -1) d+=1;
+            else if(c == -2) d+=3;
             
             while(c-->0){
                 var temp = List.of(cur[0] + dir[d%4][0], cur[1] + dir[d%4][1]);
