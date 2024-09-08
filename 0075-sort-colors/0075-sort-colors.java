@@ -1,10 +1,10 @@
 class Solution {
     public void sortColors(int[] nums) {
-        int i=0; // pointer for 0
-        int j=0; // pointer for 1
-        int k = nums.length - 1; // pointer for 2
+        int i = 0; // pointer for 0 (ending of 1s)
+        int j = 0; // pointer for 1
+        int k = nums.length - 1; // pointer for 2 (beginning of 1s)
         
-        while(j<=k){
+        while(j <= k){
             if(nums[j] == 0){
                 swap(j, i, nums);
                 ++i;
