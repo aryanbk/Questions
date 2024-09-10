@@ -12,15 +12,14 @@ class Solution {
     public ListNode insertGreatestCommonDivisors(ListNode head) {
         var ptr = head;
         while(ptr.next != null){
-            int gcd = getGcd(ptr.val, ptr.next.val);
-            var gcdNode = new ListNode(gcd, ptr.next);
+            var gcdNode = new ListNode(gcd(ptr.val, ptr.next.val), ptr.next);
             ptr.next = gcdNode;
             ptr = gcdNode.next;
         }
         return head;
     }
     
-    int getGcd(int a, int b){
-        return b==0 ? a : getGcd(b, a%b);
+    int gcd(int a, int b){
+        return b==0 ? a : gcd(b, a%b);
     }
 }
