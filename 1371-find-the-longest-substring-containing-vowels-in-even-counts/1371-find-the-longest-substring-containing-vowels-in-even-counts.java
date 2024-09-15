@@ -25,6 +25,10 @@ class Solution {
 
 
 
+
+
+// // wrong approch
+
 // class Solution {
 //     public int findTheLongestSubstring(String s) {
 //         int[] map = new int[]{'a'-'a', 'e'-'a', 'i'-'a', 'o'-'a', 'u'-'a'};
