@@ -1,13 +1,15 @@
+// O(n) bucket sort
+
 class Solution {
     public int findMinDifference(List<String> timePoints) {
         int n = timePoints.size();
-        boolean[] f = new boolean[24*60];
+        boolean[] bucket = new boolean[24*60];
         
         for(int i=0; i<n; ++i){
             String[] cur = timePoints.get(i).split(":");
             int minutes = (Integer.parseInt(cur[0])*60) + Integer.parseInt(cur[1]);
-            if(f[minutes]) return 0;
-            f[minutes] = true;
+            if(bucket[minutes]) return 0;
+            bucket[minutes] = true;
         }
         
         int prev = -1;
@@ -15,7 +17,7 @@ class Solution {
         int ans = Integer.MAX_VALUE; // difference
         
         for(int i=0; i<24*60; ++i){
-            if(f[i]){
+            if(bucket[i]){
                 if(prev != -1) ans = Math.min(ans, i-prev);
                 prev = i;
                 if(first == -1) first = i;
@@ -27,7 +29,8 @@ class Solution {
 }
 
 
-
+// // O(n logn)
+//
 // class Solution {
 //     public int findMinDifference(List<String> timePoints) {
 //         int n = timePoints.size();
