@@ -1,45 +1,91 @@
-class MyCircularDeque {
-    Deque<Integer> dq;
+class MyCircularDeque extends ArrayDeque<Integer> {
     int k;
+    
     public MyCircularDeque(int k) {
-        dq = new ArrayDeque<>(k);
+        super(k);
         this.k = k;
     }
     
     public boolean insertFront(int value) {
-        return dq.size()==k ? false : dq.offerFirst(value);
+        return super.size()==k ? false : super.offerFirst(value);
     }
     
     public boolean insertLast(int value) {
-        return dq.size()==k ? false : dq.offerLast(value);
+        return super.size()==k ? false : super.offerLast(value);
     }
     
     public boolean deleteFront() {
-        return dq.pollFirst() != null;
+        return super.pollFirst() != null;
     }
     
     public boolean deleteLast() {
-        return dq.pollLast() != null;
+        return super.pollLast() != null;
     }
     
     public int getFront() {
-        var ans = dq.peekFirst();
-        return ans==null ? -1 : ans;
+        return super.peekFirst() == null ? -1 : super.peekFirst();
     }
     
     public int getRear() {
-        var ans = dq.peekLast();
-        return ans==null ? -1 : ans;
+        return super.peekLast() == null ? -1 : super.peekLast();
     }
     
     public boolean isEmpty() {
-        return dq.isEmpty();
+        return super.isEmpty();
     }
     
     public boolean isFull() {
-        return dq.size()==k;
+        return super.size()==k;
     }
 }
+
+
+
+
+
+
+// class MyCircularDeque {
+//     Deque<Integer> super;
+//     int k;
+//     public MyCircularDeque(int k) {
+//         super = new ArrayDeque<>(k);
+//         this.k = k;
+//     }
+    
+//     public boolean insertFront(int value) {
+//         return super.size()==k ? false : super.offerFirst(value);
+//     }
+    
+//     public boolean insertLast(int value) {
+//         return super.size()==k ? false : super.offerLast(value);
+//     }
+    
+//     public boolean deleteFront() {
+//         return super.pollFirst() != null;
+//     }
+    
+//     public boolean deleteLast() {
+//         return super.pollLast() != null;
+//     }
+    
+//     public int getFront() {
+//         var ans = super.peekFirst();
+//         return ans==null ? -1 : ans;
+//     }
+    
+//     public int getRear() {
+//         var ans = super.peekLast();
+//         return ans==null ? -1 : ans;
+//     }
+    
+//     public boolean isEmpty() {
+//         return super.isEmpty();
+//     }
+    
+//     public boolean isFull() {
+//         return super.size()==k;
+//     }
+// }
 
 /**
  * Your MyCircularDeque object will be instantiated and called as such:
