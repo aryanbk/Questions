@@ -12,10 +12,8 @@ class AllOne {
         map.put(key, freq+1);
         remap.putIfAbsent(freq+1, new HashSet<>());
         remap.get(freq+1).add(key);
-        if(freq != 0){
-            remap.get(freq).remove(key);
-            if(remap.get(freq).size() == 0) remap.remove(freq);
-        }
+        
+        if(freq != 0) remove(freq, key);
     }
     
     public void dec(String key) {
@@ -27,8 +25,7 @@ class AllOne {
         }
         else map.remove(key);
         
-        remap.get(freq).remove(key);
-        if(remap.get(freq).size() == 0) remap.remove(freq);
+        remove(freq, key);
     }
     
     public String getMaxKey() {
@@ -39,6 +36,11 @@ class AllOne {
     public String getMinKey() {
         if(remap.size() == 0) return "";
         return remap.get(remap.firstKey()).iterator().next();
+    }
+    
+    void remove(int num, String str){
+        remap.get(num).remove(str);
+        if(remap.get(num).size() == 0) remap.remove(num);
     }
 }
 
