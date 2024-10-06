@@ -17,9 +17,7 @@ class FizzBuzz {
         while (true) {
             semaphore.acquire();
             try {
-                if (currentNumber > n) {
-                    break;
-                }
+                if (currentNumber > n) break;
                 if (currentNumber % 3 == 0 && currentNumber % 5 != 0) {
                     printFizz.run();
                     currentNumber++;
@@ -35,9 +33,7 @@ class FizzBuzz {
         while (true) {
             semaphore.acquire();
             try {
-                if (currentNumber > n) {
-                    break;
-                }
+                if (currentNumber > n) break;
                 if (currentNumber % 3 != 0 && currentNumber % 5 == 0) {
                     printBuzz.run();
                     currentNumber++;
@@ -53,9 +49,7 @@ class FizzBuzz {
         while (true) {
             semaphore.acquire();
             try {
-                if (currentNumber > n) {
-                    break;
-                }
+                if (currentNumber > n) break;
                 if (currentNumber % 3 == 0 && currentNumber % 5 == 0) {
                     printFizzBuzz.run();
                     currentNumber++;
@@ -71,9 +65,7 @@ class FizzBuzz {
         while (true) {
             semaphore.acquire();
             try {
-                if (currentNumber > n) {
-                    break;
-                }
+                if (currentNumber > n) break;
                 if (currentNumber % 3 != 0 && currentNumber % 5 != 0) {
                     printNumber.accept(currentNumber);
                     currentNumber++;
