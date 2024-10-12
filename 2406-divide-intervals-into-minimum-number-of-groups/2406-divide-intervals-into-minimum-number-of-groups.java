@@ -4,7 +4,8 @@ class Solution {
         n = intv.length;
         int ans = 0;
         
-        Arrays.sort(intv, (a, b) -> a[0]==b[0] ? a[1]-b[1] : a[0]-b[0]);
+        Arrays.sort(intv, (a, b) -> a[0]==b[0] ? b[1]-a[1] : a[0]-b[0]); // OR
+        // Arrays.sort(intv, (a, b) -> a[0]==b[0] ? a[1]-b[1] : a[0]-b[0]); 
         boolean[] added = new boolean[n];
         
         for(int i=0; i<n; ++i)
