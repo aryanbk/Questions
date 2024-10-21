@@ -11,7 +11,7 @@ class Solution {
             if(!set.contains(subs)){
                 set.add(subs);
                 int nx = bfs(x, set, s);
-                if(nx >= 0) res = Math.max(res, 1+nx);
+                res = Math.max(res, 1+nx);
                 set.remove(subs);
             }
         }
