@@ -10,8 +10,7 @@ class Solution {
         for(int x=i+1; x<=s.length(); ++x){
             String subs = s.substring(i, x);
             if(!set.add(subs)) continue;
-            int nx = bfs(x, set, s);
-            res = Math.max(res, 1+nx);
+            res = Math.max(res, 1+bfs(x, set, s));
             set.remove(subs);
         }
         return res;
