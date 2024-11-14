@@ -9,14 +9,11 @@ class Solution {
         while(lo <= hi){
             int mid = lo + (hi-lo)/2;
             
-            if(valid(quant, n, mid)){
-                res = mid;
-                hi = mid-1;
-            }else
-                lo = mid+1;
+            if(valid(quant, n, mid)) hi = mid-1;
+            else lo = mid+1;
         }
         
-        return res;
+        return lo;
     }
     private boolean valid(int[] quant, int n, double maxi){
         for(int q: quant) n -= Math.ceil(q/maxi);
