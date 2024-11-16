@@ -41,7 +41,7 @@ class Solution {
         return prev;
     }
     
-    ListNode getEnd(ListNode st, int k){
+    ListNode getEnd(ListNode st, int k){ // return end by traversing k nodes
         ListNode end = st;
         for(int i=0; end!=null && i<k; ++i)
             end = end.next;
