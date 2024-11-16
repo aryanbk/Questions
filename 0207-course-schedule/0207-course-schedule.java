@@ -18,15 +18,12 @@ class Solution {
         }
         
         while(!q.isEmpty() && seen<n){
-            int l = q.size();
-            for(int i=0; i<l; ++i){
-                int node = q.poll();
-                ++seen;
-                
-                for(int nbr: adj[node]){
-                    --indeg[nbr];
-                    if(indeg[nbr]==0) q.offer(nbr);
-                }
+            int node = q.poll();
+            ++seen;
+
+            for(int nbr: adj[node]){
+                --indeg[nbr];
+                if(indeg[nbr]==0) q.offer(nbr);
             }
         }
         
