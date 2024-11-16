@@ -6,7 +6,7 @@ class Solution {
         
         boolean[] vis = new boolean[n];
         var pq = new PriorityQueue<int[]>((a, b) -> a[0]-b[0]);
-        pq.offer(new int[]{0, 0});
+        pq.offer(new int[]{0, 0}); // cost, index
         
         while(!pq.isEmpty() && seen < n){
             int[] cur = pq.poll();
