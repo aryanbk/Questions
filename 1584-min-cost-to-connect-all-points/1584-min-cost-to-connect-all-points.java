@@ -18,7 +18,7 @@ class Solution {
             ++seen;
             
             for(int i=0; i<n; ++i){
-                if(i != idx && !vis[i]){
+                if(!vis[i]){
                     int dist = Math.abs(points[i][0] - points[idx][0]) + Math.abs(points[i][1] - points[idx][1]);
                     pq.offer(new int[]{dist, i});
                 }
