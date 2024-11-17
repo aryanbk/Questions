@@ -2,13 +2,11 @@
 
 class Solution {
     List<Integer>[] adj;
-    boolean[] vis;
     Stack<Integer> stk;
     int[] indeg;
     
     public int[] findOrder(int n, int[][] pre) {
         adj = new ArrayList[n];
-        vis = new boolean[n];
         stk = new Stack<>();
         indeg = new int[n];
         
@@ -33,15 +31,10 @@ class Solution {
     void topo(int node){
         stk.push(node);
         indeg[node] = -1;
-        // if(vis[node]) return;
-        // vis[node] = true;
-        
         for(int nbr: adj[node]){
             --indeg[nbr];
             if(indeg[nbr]==0) topo(nbr);
         }
-        
-        // stk.push(node);
     }
     
 }
