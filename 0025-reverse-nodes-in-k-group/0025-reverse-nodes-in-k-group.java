@@ -10,41 +10,64 @@
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode dummy = new ListNode(-1, head);
-        ListNode st = dummy;
+        ListNode ptr = head;
+        int i = 0;
         
-        while(true){
-            ListNode end = getEnd(st, k);
-
-            if(end == null) return dummy.next;
-
-            ListNode nx = end.next;
-            end.next = null;
-            
-            ListNode rev = reverse(st.next);
-            st.next = rev;
-            end = getEnd(st, k);
-            end.next = nx;
-
-            st = end;
+        for(; i<k && ptr!=null; ++i) ptr = ptr.next;
+        if(i != k) return head;
+        
+        ptr = reverseKGroup(ptr, k);
+        
+        while(i-->0){
+            ListNode nx = head.next;
+            head.next = ptr;
+            ptr = head;
+            head = nx;
         }
-    }
-    
-    ListNode reverse(ListNode node){
-        ListNode prev = null;
-        while(node!=null){
-            ListNode nx = node.next;
-            node.next = prev;
-            prev = node;
-            node = nx;
-        }
-        return prev;
-    }
-    
-    ListNode getEnd(ListNode st, int k){ // return end by traversing k nodes
-        ListNode end = st;
-        for(int i=0; end!=null && i<k; ++i)
-            end = end.next;
-        return end;
+        
+        return ptr;
     }
 }
+
+
+
+// class Solution {
+//     public ListNode reverseKGroup(ListNode head, int k) {
+//         ListNode dummy = new ListNode(-1, head);
+//         ListNode st = dummy;
+        
+//         while(true){
+//             ListNode end = getEnd(st, k);
+
+//             if(end == null) return dummy.next;
+
+//             ListNode nx = end.next;
+//             end.next = null;
+            
+//             ListNode rev = reverse(st.next);
+//             st.next = rev;
+//             end = getEnd(st, k);
+//             end.next = nx;
+
+//             st = end;
+//         }
+//     }
+    
+//     ListNode reverse(ListNode node){
+//         ListNode prev = null;
+//         while(node!=null){
+//             ListNode nx = node.next;
+//             node.next = prev;
+//             prev = node;
+//             node = nx;
+//         }
+//         return prev;
+//     }
+    
+//     ListNode getEnd(ListNode st, int k){ // return end by traversing k nodes
+//         ListNode end = st;
+//         for(int i=0; end!=null && i<k; ++i)
+//             end = end.next;
+//         return end;
+//     }
+// }
