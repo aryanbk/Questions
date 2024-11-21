@@ -1,7 +1,7 @@
 class Solution {
     public double myPow(double x, int n) {
         double ans = 1.0;
-        long m = n;
+        long m = n; // IMP
         if(m==0) return 1;
         if(m<0) m *= -1;
         
@@ -10,7 +10,7 @@ class Solution {
                 ans *= x;
                 --m;
             }else{
-                x *= x;
+                x *= x; // IMP
                 m/=2;
             }
         }
